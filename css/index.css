@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #504d78;
+}
+
+body {
+  height: calc(100vh + 300px);
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%);
+}
+
+nav {
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 20rem;
+  margin-left: 55rem;
+  margin-top: 1rem;
+}
+
+.container {
+  width: 160vh;
+  height: 80vh;
+  background: white;
+  margin: 0 auto;
+  /* margin-top: 5vh; */
+  margin-top: 300px;
+  border-radius: 15px;
+  overflow: scroll;
+}
+
+h1 {
+  text-align: center;
+  line-height: 5rem;
+}
+
+form {
+  justify-content: center;
+}
+
+table {
+  margin: auto;
+  line-height: 1rem;
+}
+
+table td {
+  padding: 1rem;
+}
+
+.btns {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* 後台 列表的樣式 */
+
+.list {
+  width: 85%;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+
+}
+
+.list-header div {
+  width: calc(100% / 5);
+  background: #504d78;
+  color: #ccc;
+}
+
+.list-items a div {
+  width: calc(100% / 5);
+  padding: 0.5rem 1rem;
+}
+
+/* 後台列表寬高 */
+.list-items {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  border-bottom: 1px solid #eee;
+  font-weight: bold;
+  font-size: 1.15rem;
+}
+
+/* 滑鼠移到列表時 */
+.list-items:hover {
+  cursor: pointer;
+}
+
+.list {
+  margin: 1rem 5rem;
+}
+
+.list a {
+  text-decoration: none;
+}
+
+.list-header div a {
+  color: #ccc;
+}
+
+.result-table {
+  border-collapse: collapse;
+  box-shadow: 0 0 6px #bbb;
+}
+
+.result-table td {
+  padding: 0.25rem;
+  border: 1px solid #ccc;
+}
+
+#list {
+  margin-left: 20vh;
+
+}
+
+#types {
+  padding: 0.25rem 0.5rem;
+  font-size: 1.1rem;
+  border: 0;
+  border-bottom: 1px solid #504d78;
+}
+
+.vote-item {
+  margin: 1rem 25rem;
+}
+
+.logbtn {
+  margin: 0 auto;
+  display: block;
+  width: 20%;
+  height: 8vh;
+  border: none;
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
+  background-size: 200%;
+  outline: none;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 20px;
+  margin-top: 10vh;
+}

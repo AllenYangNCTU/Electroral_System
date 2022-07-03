@@ -1,0 +1,132 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #504d78;
+  text-decoration:none
+}
+
+body{
+  height: 100vh;
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%);
+}
+
+nav{
+  height: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 20rem;
+  margin-left: 55rem;
+  margin-top: 1rem;
+}
+
+.container{
+  width: 70vh;
+  height: 80vh;
+  background: white;
+  margin: 0 auto;
+  margin-top: 1vh;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 5vh 3vh;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+h1{
+  text-align: center;
+  line-height: 2rem;
+}
+
+h2{
+  margin-top: 2vh;
+}
+
+footer{
+  text-align: center;
+  margin-top: 93vh;
+}
+
+.login-form h1{
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.txtb{
+  border-bottom: 2px solid #adadad;
+  position: relative;
+  margin: 30px 0;
+}
+
+.txtb input{
+  margin-top: 5vh;
+  font-size: 15px;
+  color: #ddd;
+  border: none;
+  width: 100%;
+  outline: none;
+  background: none;
+  padding: 0 5px;
+  height: 40px;
+}
+
+.txtb span::before{
+  content: attr(data-placeholder);
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  z-index: -1;
+  transition: .5s;
+}
+
+.txtb span::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-image: linear-gradient(to top, #fd749f 0%, #3fefe6 100%);
+  transition: .5s;
+}
+
+.focus + span::before{
+  top: -5px;
+}
+
+.focus + span::after{
+  width: 100%;
+}
+
+.logbtn{
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  height: 8vh;
+  border: none;
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%,#fed6e3 0%,#a8edea 100%,#fed6e3 0% );
+  background-size: 200%;
+  outline: none;
+  cursor: pointer;
+  transition: .5s;
+  border-radius: 20px;
+  margin-top: 10vh;
+}
+
+.logbtn:hover{
+  background-position: right;
+}
+
+.bottom-text{
+  margin-top: 10vh;
+  text-align: center;
+  font-size: 1rem;
+}
+.bottom-text a{
+  margin: 2rem;
+}
