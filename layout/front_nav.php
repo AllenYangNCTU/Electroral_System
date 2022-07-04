@@ -1,7 +1,9 @@
 <!-- 上方選單顯示 -->
 <?php
 if (isset($_SESSION['user'])) {
-  if ($_SESSION['user'] == 'admin') {
+  $sql = "select admin  from `users` where acc='{$_SESSION['user']}'";
+  $admin = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+  if ($admin['admin'] == 1) {
 ?>
     <a href="back.php">管理投票</a>
     <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->

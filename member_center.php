@@ -48,9 +48,10 @@
       margin-top: 2vh;
     }
 
-    .inputBox{
-            position: relative;
-        }
+    .inputBox {
+      position: relative;
+    }
+
     #toggle {
       position: absolute;
       transform: translateY(20%);
