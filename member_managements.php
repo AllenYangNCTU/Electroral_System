@@ -25,7 +25,7 @@
         print("Address: " . $result['addr'] . "<br>");
         print("E-mail: " . $result['email'] . "<br>");
         print("Passnote: " . $result['passnote'] . "<br>");
-        print("isadmin: " . $result['admin'] . "<br><br><br>");
+        print("會員等級: " . (($result['admin']) ? "管理員" : "一般會員") . "<br><br><br>");
     ?>
         <?php
         if (isset($_GET['do'])) { //如果有取得do這個頁面的話執行
@@ -34,13 +34,22 @@
 
         if (isset($file) && file_exists($file)) { //判斷如果有檔案在載入
             include $file;
+        } else if (!$result['admin']) {
+        ?>
+
+            <button class=btn onclick="location.href='./back/remove_account.php?do=remove_account&id=<?= $result['id']; ?>'">刪除使用者</button><!-- get傳值檔案名稱 -->
+            <button class=btn onclick="location.href='./back/chmod.php?do=chmod&action=upgrade&id=<?= $result['id']; ?>'">提高等級</button>
+            <br><!-- get傳值檔案名稱 -->
+        <?php
         } else {
         ?>
-            <button class=btn onclick="location.href='./back/remove_account.php?do=remove_account&id=<?= $result['id']; ?>'">刪除使用者</button><!-- get傳值檔案名稱 -->
+            <button class=btn onclick="location.href='./back/chmod.php?do=chmod&action=downgrade&id=<?= $result['id']; ?>'">降低等級</button><!-- get傳值檔案名稱 -->
             <br>
+        <?php } ?>
+
     <?php
-        }
     }
+
     ?>
 </body>
 

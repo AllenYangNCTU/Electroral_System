@@ -18,7 +18,9 @@ if (isset($_SESSION['user'])) {
   }
 } else {
   ?>
-  <a href="login.php">登入</a>
+  <a href="login.php">會員登入</a>
+
+  <a href="register.php">還沒有會員？註冊</a>
   <!-- 如果沒有登入資料就顯示登入 -->
 <?php
 }
