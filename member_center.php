@@ -130,6 +130,15 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
       <span>密碼提示：</span>
       <?= $user['passnote']; ?>
     </div>
+    <div>
+      <span>等級：</span>
+      <?php if ($user['admin'] == 1) {
+        print("管理員");
+      } else {
+        print("一般會員");
+      }
+      ?>
+    </div>
 
     <form action="edit.php" method="post">
       <input type="hidden" name="id" value="<?= $user['id']; ?>"> <!-- 隱藏按鈕帶參數過去 -->
