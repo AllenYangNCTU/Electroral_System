@@ -14,12 +14,16 @@ if (isset($_POST['opt'])) {
         $subject['total']++;
         update_or_insert_contents_in_table("subjects", $subject);
       }
-      // $log = [
-      //   'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
-      //   'subject_id' => $subject['id'],
-      //   'option_id' => $option['id']
-      // ];
-      // update_or_insert_contents_in_table("logs", $log);
+      $sql = "select id from `users` where acc = '{$_SESSION['user']}'";
+      $user_id = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+      // dd($user_id);
+      $log = [
+        'user_id' => $user_id['id'],
+        // 'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
+        'subject_id' => $subject['id'],
+        'option_id' => $option['id']
+      ];
+      update_or_insert_contents_in_table("logs", $log);
     }
   } else {
     //單選題
@@ -29,12 +33,17 @@ if (isset($_POST['opt'])) {
     $subject = find_something_in_table("subjects", $option['subject_id']);
     $subject['total']++;
     update_or_insert_contents_in_table("subjects", $subject);
-    // $log = [
-    //   'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
-    //   'subject_id' => $subject['id'],
-    //   'option_id' => $option['id']
-    // ];
-    // update_or_insert_contents_in_table("logs", $log);
+
+    $sql = "select id from `users` where acc = '{$_SESSION['user']}'";
+    $user_id = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+    // dd($user_id);
+    $log = [
+      'user_id' => $user_id['id'],
+      // 'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
+      'subject_id' => $subject['id'],
+      'option_id' => $option['id']
+    ];
+    update_or_insert_contents_in_table("logs", $log);
   }
 }
 header_to("../index.php?do=vote_result&id={$option['subject_id']}");
