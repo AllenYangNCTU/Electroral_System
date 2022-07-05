@@ -45,7 +45,7 @@
     if ($admin['admin'] == 1) {
   ?>
       <nav>
-
+        <a href="index.php">回首頁</a>
         <a href="back.php">管理投票</a>
         <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
         <a href="member_center.php">會員中心</a>
@@ -55,7 +55,7 @@
     } else {
     ?>
       <nav>
-
+        <a href="index.php">回首頁</a>
         <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
         <a href="member_center.php">會員中心</a>
       </nav>

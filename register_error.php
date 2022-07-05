@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>密碼前後不一致，請重新註冊</h1>
+    <h1>error!，請重新註冊</h1>
     <a href="./register.php">click me to register again</a>
 </body>
 
