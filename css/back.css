@@ -1,29 +1,29 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: #504d78;
-  text-decoration:none
+  text-decoration: none
 }
 
-body{
+body {
   height: 100vh;
   background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%);
 }
 
 /* 上方導覽 */
-nav{
+nav {
   height: 1rem;
   display: flex;
   justify-content: space-between;
-  width: 20rem; 
-  margin-left: 50rem; 
+  width: 20rem;
+  margin-left: 50rem;
   margin-top: 1rem;
 }
 
 /* 主要內容 */
-.container{
+.container {
   width: 160vh;
   height: 80vh;
   background: white;
@@ -33,46 +33,46 @@ nav{
   overflow: auto;
 }
 
-h1{
+h1 {
   text-align: center;
   line-height: 5rem;
 }
 
-form{
+form {
   justify-content: center;
 }
 
-table{
+table {
   margin: auto;
   line-height: 1rem;
 }
 
-table td{
+table td {
   padding: 1rem;
 }
 
-.btns{
+.btns {
   text-align: center;
 }
 
-h2{
+h2 {
   color: red;
   text-align: center;
 }
 
 /* 尾版 */
-footer{
+footer {
   text-align: center;
   margin-top: 1rem;
 }
 
 /* common components */
-.btn{
-  margin-left: 5rem ;
+.btn {
+  margin-left: 5rem;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 20px;
-  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%,#fed6e3 0%,#a8edea 100%,#fed6e3 0% );
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
   padding: 0.25rem 0.75rem;
   font-size: 1.1rem;
   box-sizing: 0 0 10px #ccc;
@@ -81,11 +81,12 @@ footer{
 }
 
 /* 內頁列表 */
-ul{
+ul {
   margin: 1rem 5rem;
 }
+
 /* 列表寬高 */
-.list-items{
+.list-items {
   display: flex;
   justify-content: space-evenly;
   padding: 0.5rem;
@@ -94,13 +95,15 @@ ul{
   font-weight: bold;
   font-size: 1.15rem;
 }
+
 /* 滑鼠移到列表時 */
-.list-items:hover{
+.list-items:hover {
   background: linear-gradient(to top, #fed6e356 0%, #a8ede988 100%);
   cursor: pointer;
 }
+
 /* 列表的編輯按鈕 */
-.edit{
+.edit {
   display: inline-block;
   padding: 3px 12px;
   border: 1px solid #ccc;
@@ -108,12 +111,14 @@ ul{
   box-shadow: 3px 3px 10px #aaa;
   margin: 0 5px;
 }
-.edit:hover{
+
+.edit:hover {
   background: #504d78;
   color: #fff;
 }
+
 /* 列表的刪除按鈕 */
-.del{
+.del {
   display: inline-block;
   padding: 3px 12px;
   border: 1px solid #ccc;
@@ -122,40 +127,43 @@ ul{
   box-shadow: 3px 3px 10px #aaa;
   margin: 0 5px;
 }
-.del:hover{
+
+.del:hover {
   background: #504d78;
   color: #fff;
 }
 
 /* 後台 列表的樣式 */
 
-.list{
+.list {
   width: 80%;
 }
-.list-header{
+
+.list-header {
   display: flex;
   justify-content: space-evenly;
   text-align: center;
-  
+
 }
 
-.list-header div{
+.list-header div {
   width: calc(100% / 5);
   background: #504d78;
   color: #ccc;
 }
-.list-items a div{
+
+.list-items a div {
   width: calc(100% / 5);
   padding: 0.5rem 1rem;
 }
 
-.logbtn{
+.logbtn {
   margin: 0 auto;
   display: block;
   width: 40%;
   height: 8vh;
   border: none;
-  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%,#fed6e3 0%,#a8edea 100%,#fed6e3 0% );
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
   background-size: 200%;
   outline: none;
   cursor: pointer;
@@ -164,6 +172,16 @@ ul{
   margin-top: 15vh;
 }
 
-.vote-sub{
+.vote-sub {
+  margin-top: 1rem;
+}
+
+nav {
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 20rem;
+  margin-left: 55rem;
   margin-top: 1rem;
 }

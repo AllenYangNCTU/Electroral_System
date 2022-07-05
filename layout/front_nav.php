@@ -44,15 +44,21 @@
     $admin = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     if ($admin['admin'] == 1) {
   ?>
-      <a href="back.php">管理投票</a>
-      <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
-      <a href="member_center.php">會員中心</a>
-      <a href="member_managements.php">會員列表</a>
+      <nav>
+
+        <a href="back.php">管理投票</a>
+        <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
+        <a href="member_center.php">會員中心</a>
+        <a href="member_managements.php">會員列表</a>
+      </nav>
     <?php
     } else {
     ?>
-      <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
-      <a href="member_center.php">會員中心</a>
+      <nav>
+
+        <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
+        <a href="member_center.php">會員中心</a>
+      </nav>
     <?php
     }
   } else {
