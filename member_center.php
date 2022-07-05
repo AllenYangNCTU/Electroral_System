@@ -95,7 +95,7 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     }
     ?>
 
-    <h2>歡迎<?= $_SESSION['user']; ?></h2>
+    <h2>歡迎~<?= $_SESSION['user']; ?>~</h2>
     <div>
       <span>序號：</span>
       <?= $user['id']; ?>
