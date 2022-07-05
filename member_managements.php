@@ -10,7 +10,8 @@
 
 <body>
 
-
+    <h1>會員列表</h1>
+    <a href="./member_center.php">返回</a><br><br><br>
     <?php
     include_once("./api/base.php");
     $results = show_table_contents("users");
@@ -51,6 +52,7 @@
     }
 
     ?>
+    <a href="#">TOP</a>
 </body>
 
 </html>

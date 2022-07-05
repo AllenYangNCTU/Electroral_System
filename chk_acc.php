@@ -43,7 +43,7 @@
 
     if ($user['email'] == $email) {
 
-      header_to("./back/resetpwd.php?do=resetpwd&id=$id");
+      header_to("./back/resetpwd.php?do=resetpwd&id=$id&acc=$acc");
     } else if (empty($user)) { //如果資料庫有這個帳號的話給密碼
       echo "查無此帳號";
     ?>
