@@ -87,7 +87,8 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     <h1>會員中心</h1>
 
     <?php
-    if ($_SESSION['user'] != 'admin') {
+    // if ($_SESSION['user'] != 'admin') {
+    if (!$user['admin']) {
     ?>
       <a class="remove" href="remove_acc.php?id=<?= $user['id']; ?>">刪除帳號</a>
     <?php
@@ -104,11 +105,15 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
       <?= $user['acc']; ?>
     </div>
     <div class="inputBox">
-      <span>密碼：
-        <input type="password" placeholder="密碼" id="password" value="<?= $user['pw']; ?>">
+      <span>密碼：<a href="./back/update_pwd.php?account=<?= $user['acc']; ?>">修改密碼</a>
+        <!-- <input type="password" placeholder="密碼" id="password" value=" -->
+        <?php
+        //  $user['pw']; 
+        ?>
+        <!-- "> -->
       </span>
       <!-- 偵測按下去時執行 function showHide的內容 -->
-      <span id="toggle" onclick="showHide();"></span>
+      <!-- <span id="toggle" onclick="showHide();"></span> -->
     </div>
     <div>
       <span>姓名：</span>
@@ -128,7 +133,9 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     </div>
     <div>
       <span>密碼提示：</span>
-      <?= $user['passnote']; ?>
+      <?php
+      // $user['passnote']; 
+      ?>
     </div>
     <div>
       <span>等級：</span>

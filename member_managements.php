@@ -41,7 +41,7 @@
             <button class=btn onclick="location.href='./back/chmod.php?do=chmod&action=upgrade&id=<?= $result['id']; ?>'">提高等級</button>
             <br><!-- get傳值檔案名稱 -->
         <?php
-        } else {
+        } else if ($result['acc'] != $_SESSION['user']) {
         ?>
             <button class=btn onclick="location.href='./back/chmod.php?do=chmod&action=downgrade&id=<?= $result['id']; ?>'">降低等級</button><!-- get傳值檔案名稱 -->
             <br>
