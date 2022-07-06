@@ -14,7 +14,14 @@
     .subject_container {
       display: flex;
       justify-content: space-evenly;
-      /* float: left; */
+      border-radius: 15px;
+    }
+
+    .subject_container:hover {
+      background-color: #fed6e3;
+      /* background-color: #a8edea; */
+      transform: scale(1.05, 1.05);
+      transition: all 0.5s ease-out;
     }
 
     .subject_li {

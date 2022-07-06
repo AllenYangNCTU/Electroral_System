@@ -11,6 +11,7 @@
       display: flex;
       justify-content: space-evenly;
       /* float: left; */
+      margin-top: 5px;
     }
 
     .subject_li {
@@ -30,6 +31,14 @@
       font-size: 20px;
       /* margin-left: 4%; */
       padding-left: 3%;
+    }
+
+    .subject_container:hover {
+      background-color: #fed6e3;
+      /* background-color: #a8edea; */
+      transform: scale(1.05, 1.05);
+      transition: all 0.5s ease-out;
+      margin-top: 15px;
     }
   </style>
 </head>
