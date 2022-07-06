@@ -15,6 +15,15 @@
       margin-top: 5px;
     }
 
+    .subject_container_voted {
+      display: flex;
+      justify-content: space-evenly;
+      /* float: left; */
+      border-radius: 15px;
+      margin-top: 5px;
+      background-color: #a8edea;
+    }
+
     .subject_li {
       width: calc(100% / 6);
       display: inline-block;
@@ -32,6 +41,7 @@
       font-size: 20px;
       /* margin-left: 4%; */
       padding-left: 3%;
+      /* background-color: #a8edea; */
     }
 
     .subject_container:hover {
@@ -169,10 +179,18 @@
       $start = ($now - 1) * $div;
       $page_rows = " limit $start,$div";
 
-      $subjects = show_table_contents('subjects', $filter, $orderStr . $page_rows); //取得所有投票列表
+
+
+      $subjects = show_table_contents('subjects', $filter, $orderStr . $page_rows);
+      //取得所有投票列表
       foreach ($subjects as $subject) { //使用迴圈印內容
+        $voted = "select count(id) as num from `logs` where user_id=(select id from `users` where acc = '{$_SESSION["user"]}') and subject_id='{$subject["id"]}'";
+        $vote_history = $pdo->query($voted)->fetch(PDO::FETCH_ASSOC);
+
+        $subject_container_style = ($vote_history['num'] == 0) ? "subject_container" : "subject_container_voted";
+
         echo "<a href='?do=vote_result&id={$subject['id']}'>"; //要把投票帶去哪
-        echo "<div class='subject_container'>";
+        echo "<div class=$subject_container_style>";
         $sql_title = "select name from types where  `id`= '{$subject["type_id"]}'";
         $typename = $pdo->query($sql_title)->fetch(PDO::FETCH_ASSOC);
         echo "<div class='subject_li'>{$typename['name']}</div>";
