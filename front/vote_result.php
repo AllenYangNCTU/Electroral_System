@@ -17,11 +17,6 @@
       width: 40%;
       margin-top: 1rem;
     }
-
-    .cannotpoll {
-      width: 40%;
-      margin-top: 1rem;
-    }
   </style>
 </head>
 
@@ -51,9 +46,13 @@
           <td>比例</td>
         </tr>
         <?php
+        $sum = 0;
         foreach ($opts as $opt) {
-          $total = ($subject['total'] == 0) ? 1 : $subject['total'];
-          $rate = $opt['total'] / $total;
+          $sum += $opt['total'];
+        }
+        foreach ($opts as $opt) {
+          $sum = ($subject['total'] == 0) ? 1 : $sum;
+          $rate = $opt['total'] / $sum;
         ?>
           <tr>
             <td><?= $opt['option']; ?></td>
@@ -74,23 +73,28 @@
       if (isset($_SESSION['user'])) {
         $sqllog = "select count(user_id) as number from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
         $cannotpoll = $pdo->query($sqllog)->fetch(PDO::FETCH_ASSOC);
-        $sqlreset = "delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
-        // $resetpoll = $pdo->query($sqlreset)->fetch(PDO::FETCH_ASSOC);
+
+        // $update_option = "UPDATE `options` SET `total` = total -1  WHERE id in (SELECT option_id FROM `logs` WHERE user_id = (select id from `users` where acc = '{$_SESSION['user']}') and subject_id='{$_GET['id']}') ";
+        // $resetoption = $pdo->exec($update_option);
+
+        // $update_subject_total = "UPDATE subjects set total = total -1  where id='{$_GET['id']}' ";
+        // $resetsubject = $pdo->exec($update_subject_total);
+
+        // $deletelog = "delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
+        // $resetlog = $pdo->exec($deletelog);
         if (!$cannotpoll['number']) {
       ?>
           <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
+        <?php } else { ?>
+          <button class="logbtn">無法投票</button>
+          <button class="logbtn">重新投票</button>
         <?php
-        } else {
-        ?>
-          <!-- $pdo->exec($sqlreset); -->
-          <!-- <button class="cannotpoll">無法重複投票</button> -->
-          <button class="logbtn">無法重複投票</button>
-          <button class="logbtn" onclick="<?php $pdo->exec($sqlreset); ?> window.location.reload();">重新投票</button>
-        <?php
-
         }
-      } else {
         ?>
+        <!-- 如果登入才顯示投票按鈕 -->
+      <?php
+      } else {
+      ?>
         <div>
           <a href="login.php"><input type="submit" class="logbtn" value="登入"></a>
         </div>
