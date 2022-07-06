@@ -16,7 +16,7 @@
     }
 
     .subject_li {
-      width: calc(100% / 5);
+      width: calc(100% / 6);
       display: inline-block;
       text-align: center;
       font-weight: bold;
@@ -25,7 +25,7 @@
     }
 
     .subject_li_title {
-      width: calc(100% / 5);
+      width: calc(100% / 6);
       display: inline-block;
       text-align: left;
       font-weight: bold;
@@ -85,6 +85,7 @@
   <div>
     <ul class="list">
       <li class="list-header">
+        <div>類別：</div>
         <div>投票主題：</div>
         <!-- 單複選題排序 -->
         <?php
@@ -172,6 +173,9 @@
       foreach ($subjects as $subject) { //使用迴圈印內容
         echo "<a href='?do=vote_result&id={$subject['id']}'>"; //要把投票帶去哪
         echo "<div class='subject_container'>";
+        $sql_title = "select name from types where  `id`= '{$subject["type_id"]}'";
+        $typename = $pdo->query($sql_title)->fetch(PDO::FETCH_ASSOC);
+        echo "<div class='subject_li'>{$typename['name']}</div>";
         echo "<div class='subject_li_title'>{$subject['subject']}</div>"; //只取得欄位
 
         if ($subject['multiple'] == 0) {

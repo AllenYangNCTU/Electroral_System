@@ -25,7 +25,7 @@
     }
 
     .subject_li {
-      width: calc(100% / 5);
+      width: calc(100% / 6);
       display: inline-block;
       text-align: center;
       font-weight: bold;
@@ -34,13 +34,27 @@
     }
 
     .subject_li_title {
-      width: calc(100% / 5);
+      width: calc(100% / 6);
       display: inline-block;
       text-align: left;
       font-weight: bold;
       font-size: 20px;
       /* margin-left: 4%; */
       padding-left: 3%;
+    }
+
+    .list-header {
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center;
+
+    }
+
+    .list-header div {
+      width: calc(100% / 6);
+      background: #504d78;
+      color: #ccc;
+      /* border-radius: 15px; */
     }
   </style>
 </head>
@@ -70,6 +84,7 @@
       <div>
         <ul>
           <li class="list-header">
+            <div>類別：</div>
             <div>投票主題：</div>
             <div>單/複選題：</div>
             <div>投票期間：</div>
@@ -81,6 +96,9 @@
           $subjects = show_table_contents('subjects'); //取得所有投票列表
           foreach ($subjects as $subject) { //使用迴圈印內容
             echo "<div class='subject_container'>";
+            $sql_title = "select name from types where  `id`= '{$subject["type_id"]}'";
+            $typename = $pdo->query($sql_title)->fetch(PDO::FETCH_ASSOC);
+            echo "<div class='subject_li'>{$typename['name']}</div>";
             echo "<div class='subject_li_title'>{$subject['subject']}</div>"; //只取得欄位
 
             if ($subject['multiple'] == 0) {
