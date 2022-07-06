@@ -122,7 +122,7 @@ footer {
   background-position: right;
 }
 
-.cannotpoll {
+.cannotpollbtn {
   margin: 0 auto;
   display: block;
   width: 80%;
@@ -131,13 +131,13 @@ footer {
   background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
   background-size: 200%;
   outline: none;
-  /* cursor: not-allowed; */
+  cursor: not-allowed;
   transition: .5s;
   border-radius: 20px;
   margin-top: 10vh;
 }
 
-.cannotpoll:hover {
+.cannotpollbtn:hover {
   background-position: right;
 }
 

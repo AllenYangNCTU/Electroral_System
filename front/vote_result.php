@@ -17,6 +17,11 @@
       width: 40%;
       margin-top: 1rem;
     }
+
+    .cannotpollbtn {
+      width: 40%;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 
