@@ -183,11 +183,16 @@
 
       $subjects = show_table_contents('subjects', $filter, $orderStr . $page_rows);
       //取得所有投票列表
-      foreach ($subjects as $subject) { //使用迴圈印內容
-        $voted = "select count(id) as num from `logs` where user_id=(select id from `users` where acc = '{$_SESSION["user"]}') and subject_id='{$subject["id"]}'";
-        $vote_history = $pdo->query($voted)->fetch(PDO::FETCH_ASSOC);
+      foreach ($subjects as $subject) {
+        $subject_container_style =  "subject_container";
+        if (isset($_SESSION['user'])) {
 
-        $subject_container_style = ($vote_history['num'] == 0) ? "subject_container" : "subject_container_voted";
+
+          $voted = "select count(id) as num from `logs` where user_id=(select id from `users` where acc = '{$_SESSION["user"]}') and subject_id='{$subject["id"]}'";
+          $vote_history = $pdo->query($voted)->fetch(PDO::FETCH_ASSOC);
+          $subject_container_style = ($vote_history['num'] == 0) ? "subject_container" : "subject_container_voted";
+        }
+
 
         echo "<a href='?do=vote_result&id={$subject['id']}'>"; //要把投票帶去哪
         echo "<div class=$subject_container_style>";
