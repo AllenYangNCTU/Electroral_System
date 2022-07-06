@@ -47,6 +47,28 @@
             outline: none;
 
         }
+
+        .btn_cannot_change {
+            /* margin-left: 5rem; */
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
+            padding: 0.25rem 0.25rem;
+            font-size: 1.1rem;
+            box-sizing: 0 0 10px #ccc;
+            border: none;
+            outline: none;
+
+        }
+
+        .btn_manage:hover {
+            cursor: pointer;
+        }
+
+        .btn_cannot_change:hover {
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -109,11 +131,11 @@
                 <?php
                 } else if ($result['acc'] != $_SESSION['user']) {
                 ?>
-                    <div class="subject_li"><button class=btn_manage>須先降級</button></div> <!-- get傳值檔案名稱 -->
+                    <div class="subject_li"><button class=btn_cannot_change>須先降級</button></div> <!-- get傳值檔案名稱 -->
                     <div class="subject_li"><button class=btn_manage onclick="location.href='./back/chmod.php?do=chmod&action=downgrade&id=<?= $result['id']; ?>'">降低等級</button></div>
                 <?php } else { ?>
-                    <div class="subject_li"><button class=btn_manage>不能刪除</button></div> <!-- get傳值檔案名稱 -->
-                    <div class="subject_li"><button class=btn_manage>不能更改</button></div>
+                    <div class="subject_li"><button class=btn_cannot_change>不能刪除</button></div> <!-- get傳值檔案名稱 -->
+                    <div class="subject_li"><button class=btn_cannot_change>不能更改</button></div>
             <?php
                 }
                 echo "</div>";
