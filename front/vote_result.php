@@ -82,12 +82,19 @@
 
         // $deletelog = "delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
         // $resetlog = $pdo->exec($deletelog);
+
+        // $undosql = "UPDATE `options` SET `total` = total - 1  WHERE id in (SELECT option_id FROM `logs` WHERE user_id = (select id from `users` where acc = '{$_SESSION['user']}') and subject_id='{$_GET['id']}'); UPDATE subjects set total = total - 1  where id='{$_GET['id']}'; delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}')";
+        // $undo = $pdo->exec($undosql);
+        $id = $_GET['id'];
         if (!$cannotpoll['number']) {
       ?>
           <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
         <?php } else { ?>
           <button class="logbtn">無法投票</button>
-          <button class="logbtn">重新投票</button>
+          <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
+
+
+
         <?php
         }
         ?>
