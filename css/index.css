@@ -90,7 +90,7 @@ footer {
   width: calc(100% / 5);
   background: #504d78;
   color: #ccc;
-  border-radius: 15px;
+  /* border-radius: 15px; */
 }
 
 .list-items a div {

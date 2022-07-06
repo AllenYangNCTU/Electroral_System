@@ -17,6 +17,11 @@
       width: 40%;
       margin-top: 1rem;
     }
+
+    .cannotpoll {
+      width: 40%;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 
@@ -67,12 +72,25 @@
 
       <?php
       if (isset($_SESSION['user'])) {
+        $sqllog = "select count(user_id) as number from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
+        $cannotpoll = $pdo->query($sqllog)->fetch(PDO::FETCH_ASSOC);
+        $sqlreset = "delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
+        // $resetpoll = $pdo->query($sqlreset)->fetch(PDO::FETCH_ASSOC);
+        if (!$cannotpoll['number']) {
       ?>
-        <!-- 如果登入才顯示投票按鈕 -->
-        <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
-      <?php
+          <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
+        <?php
+        } else {
+        ?>
+          <!-- $pdo->exec($sqlreset); -->
+          <!-- <button class="cannotpoll">無法重複投票</button> -->
+          <button class="logbtn">無法重複投票</button>
+          <button class="logbtn" onclick="<?php $pdo->exec($sqlreset); ?> window.location.reload();">重新投票</button>
+        <?php
+
+        }
       } else {
-      ?>
+        ?>
         <div>
           <a href="login.php"><input type="submit" class="logbtn" value="登入"></a>
         </div>

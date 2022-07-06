@@ -1,18 +1,18 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   color: #504d78;
-  text-decoration:none
+  text-decoration: none
 }
 
-body{
+body {
   height: 100vh;
   background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%);
 }
 
-nav{
+nav {
   height: 1rem;
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@ nav{
   margin-top: 1rem;
 }
 
-.container{
+.container {
   width: 70vh;
   height: 80vh;
   background: white;
@@ -33,35 +33,35 @@ nav{
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
-h1{
+h1 {
   text-align: center;
   line-height: 2rem;
 }
 
-h2{
+h2 {
   margin-top: 2vh;
 }
 
-footer{
+footer {
   text-align: center;
   margin-top: 93vh;
 }
 
-.login-form h1{
+.login-form h1 {
   text-align: center;
   margin-bottom: 60px;
 }
 
-.txtb{
+.txtb {
   border-bottom: 2px solid #adadad;
   position: relative;
   margin: 30px 0;
 }
 
-.txtb input{
+.txtb input {
   margin-top: 5vh;
   font-size: 15px;
   color: #ddd;
@@ -73,7 +73,7 @@ footer{
   height: 40px;
 }
 
-.txtb span::before{
+.txtb span::before {
   content: attr(data-placeholder);
   position: absolute;
   top: 50%;
@@ -84,7 +84,7 @@ footer{
   transition: .5s;
 }
 
-.txtb span::after{
+.txtb span::after {
   content: '';
   position: absolute;
   left: 0;
@@ -95,21 +95,21 @@ footer{
   transition: .5s;
 }
 
-.focus + span::before{
+.focus+span::before {
   top: -5px;
 }
 
-.focus + span::after{
+.focus+span::after {
   width: 100%;
 }
 
-.logbtn{
+.logbtn {
   margin: 0 auto;
   display: block;
   width: 80%;
   height: 8vh;
   border: none;
-  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%,#fed6e3 0%,#a8edea 100%,#fed6e3 0% );
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
   background-size: 200%;
   outline: none;
   cursor: pointer;
@@ -118,15 +118,35 @@ footer{
   margin-top: 10vh;
 }
 
-.logbtn:hover{
+.logbtn:hover {
   background-position: right;
 }
 
-.bottom-text{
+.cannotpoll {
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+  height: 8vh;
+  border: none;
+  background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
+  background-size: 200%;
+  outline: none;
+  /* cursor: not-allowed; */
+  transition: .5s;
+  border-radius: 20px;
+  margin-top: 10vh;
+}
+
+.cannotpoll:hover {
+  background-position: right;
+}
+
+.bottom-text {
   margin-top: 10vh;
   text-align: center;
   font-size: 1rem;
 }
-.bottom-text a{
+
+.bottom-text a {
   margin: 2rem;
 }
