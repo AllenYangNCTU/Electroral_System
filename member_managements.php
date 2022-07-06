@@ -20,8 +20,16 @@
             text-align: center;
             font-weight: bold;
             font-size: 15px;
+            /* border-top: 3px solid lightgray; */
             /* background-color: red; */
             /* margin-left: 4%; */
+        }
+
+        .subject_container:hover {
+            background-color: #fed6e3;
+            transform: scale(1.05, 1.05);
+            transition: all 0.5s ease-out;
+            border-radius: 10px;
         }
 
         .subject_li_title {
@@ -68,6 +76,10 @@
 
         .btn_cannot_change:hover {
             cursor: not-allowed;
+        }
+
+        .list-header {
+            border-radius: 15px;
         }
     </style>
 </head>

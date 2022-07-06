@@ -11,6 +11,7 @@
       display: flex;
       justify-content: space-evenly;
       /* float: left; */
+      border-radius: 15px;
       margin-top: 5px;
     }
 
