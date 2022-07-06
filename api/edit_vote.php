@@ -33,6 +33,8 @@ foreach ($_POST['option'] as $key => $opt) {
     update_or_insert_contents_in_table("options", $add_option);
   }
 }
+$sql = "update subjects set start = '{$_POST['start']}', end = '{$_POST['end']}' where id = '{$_POST['subject_id']}'";
+$pdo->exec($sql);
 
 header_to('../back.php');
 

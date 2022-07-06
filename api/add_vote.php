@@ -8,8 +8,8 @@ $add_subject = [ //建立資料庫內容
   'subject' => $subject,
   'type_id' => $_POST['types'],
   'multiple' => $_POST['multiple'],
-  'start' => date("Y-m-d"),
-  'end' => date("Y-m-d", strtotime("+10 days")),
+  'start' => $_POST['start'],
+  'end' => $_POST['end'],
 ];
 
 update_or_insert_contents_in_table('subjects', $add_subject); //儲存

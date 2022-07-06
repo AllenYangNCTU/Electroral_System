@@ -94,11 +94,10 @@
         if (!$cannotpoll['number']) {
       ?>
           <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
+
         <?php } else { ?>
           <button class="logbtn">無法投票</button>
           <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
-
-
 
         <?php
         }
