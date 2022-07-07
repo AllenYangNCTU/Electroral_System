@@ -20,10 +20,14 @@
       <label for="subject">投票主題:</label>
       <input type="text" name="subject" id="subject">
       <input type="button" value="新增選項" onclick="addOption()"><br><br>
+      <label for="">開始日期:</label>
+      <input type="date" name="start" value="2022-01-01" id=""><br><br>
       <label for="">開始時間:</label>
-      <input type="date" name="start" id=""><br><br>
+      <input type="time" name="starttime" value="00:01:00.000" id=""><br><br>
+      <label for="">結束日期:</label>
+      <input type="date" name="end" value="2022-12-31" id=""><br><br>
       <label for="">結束時間:</label>
-      <input type="date" name="end" id="">
+      <input type="time" name="endtime" value="00:02:00.000" id=""><br><br>
       <!-- <input type="time" name="" id="">  -->
       <!-- 點下這個按鈕 執行addOption的內容 -->
     </div>

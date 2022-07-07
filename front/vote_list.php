@@ -133,11 +133,11 @@
         <?php
         if (isset($_GET['type']) && $_GET['type'] == 'asc') {
         ?>
-          <div><a href="?order=remain&type=desc<?= $p; ?><?= $queryfilter ?>">剩餘天數：</a></div>
+          <div><a href="?order=remain&type=desc<?= $p; ?><?= $queryfilter ?>">剩餘時間：</a></div>
         <?php
         } else {
         ?>
-          <div><a href="?order=remain&type=asc<?= $p; ?><?= $queryfilter ?>">剩餘天數：</a></div>
+          <div><a href="?order=remain&type=asc<?= $p; ?><?= $queryfilter ?>">剩餘時間：</a></div>
         <?php
         }
         ?>
@@ -213,15 +213,22 @@
           echo "<div class='subject_li'>複選題</div>";
         }
 
-        echo "<div class='subject_li durations'>"; //投票開始與結束時間
-        echo $subject['start'] . "~" . $subject['end'];
+        // echo "<div class='subject_li durations'>"; //投票開始與結束時間
+        // echo $subject['start'] . "~" . $subject['end'];
+        echo "<div class='subject_li' style='font-size: 16px;'> "; //投票開始與結束時間
+        echo $subject['start'] . " " . $subject['starttime'] . "~" . "<br>" . $subject['end'] . " " . $subject['starttime'];
         echo "</div>";
 
-        echo "<div class='subject_li remain_days'>"; //投票剩餘天數
+        // echo "<div class='subject_li remain_days'>"; //投票剩餘天數
+        // $today = strtotime("now");
+        // $end = strtotime($subject['end']);
+
+
+
+
+        echo "<div style='font-size:14px;' class='subject_li'>"; //投票剩餘天數
         $today = strtotime("now");
-        $end = strtotime($subject['end']);
-
-
+        $end = strtotime($subject['end'] . " " . $subject['endtime']);
 
 
 
@@ -230,8 +237,13 @@
 
 
         if ((($end - $today) > 0) && $subject['switch'] == 1) { //如果投票還在進行
-          $remain = floor(($end - $today) / (60 * 60 * 24));
-          echo "倒數" . $remain . "天結束";
+
+          $remainday = ceil(($end - $today) / 86400);
+          $remainhours = ceil((($end - $today) % 86400) / 3600);
+          $remainminutes = ceil((($end - $today) % 3600) / 60);
+          $remainseconds = ceil(($end - $today) % 60);
+
+          echo "倒數" . $remainday . "天" . $remainhours . "小時" . $remainminutes . "分" . $remainseconds . "秒";
         } else if ((($end - $today) > 0) && $subject['switch'] == 0) { //如果投票已經截止
           echo "<span style='color:grey;'>投票暫時關閉</span>";
         } else {
@@ -239,38 +251,10 @@
         }
         echo "</div>";
 
-
-
-
-
-
-
         echo "<div class='subject_li'>{$subject['total']}</div>"; //投票總人數
         echo "</div>";
         echo "</a>";
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       ?>

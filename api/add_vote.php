@@ -10,6 +10,8 @@ $add_subject = [ //建立資料庫內容
   'multiple' => $_POST['multiple'],
   'start' => $_POST['start'],
   'end' => $_POST['end'],
+  'starttime' => $_POST['starttime'],
+  'endtime' => $_POST['endtime'],
 ];
 
 update_or_insert_contents_in_table('subjects', $add_subject); //儲存

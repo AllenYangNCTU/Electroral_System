@@ -157,7 +157,7 @@
             <div>投票主題：</div>
             <div>單/複選題：</div>
             <div>投票期間：</div>
-            <div>剩餘天數：</div>
+            <div>剩餘時間：</div>
             <div>投票人數：</div>
             <div>操作：</div>
           </li>
@@ -186,22 +186,23 @@
               echo "<div class='subject_li'>複選題</div>";
             }
 
-            echo "<div class='subject_li'>"; //投票開始與結束時間
-            echo $subject['start'] . "~" . $subject['end'];
+            echo "<div class='subject_li' style='font-size: 16px;'> "; //投票開始與結束時間
+            echo $subject['start'] . " " . $subject['starttime'] . "~" . "<br>" . $subject['end'] . " " . $subject['starttime'];
             echo "</div>";
 
 
 
 
-            echo "<div class='subject_li'>"; //投票剩餘天數
+            echo "<div style='font-size:14px;' class='subject_li'>"; //投票剩餘天數
             $today = strtotime("now");
-            $end = strtotime($subject['end']);
-
-
-
+            $end = strtotime($subject['end'] . " " . $subject['endtime']);
             if (($end - $today) > 0) { //如果投票還在進行
-              $remain = ceil(($end - $today) / (60 * 60 * 24));
-              echo "倒數" . $remain . "天結束";
+              $remainday = ceil(($end - $today) / 86400);
+              $remainhours = ceil((($end - $today) % 86400) / 3600);
+              $remainminutes = ceil((($end - $today) % 3600) / 60);
+              $remainseconds = ceil(($end - $today) % 60);
+
+              echo "倒數" . $remainday . "天" . $remainhours . "小時" . $remainminutes . "分" . $remainseconds . "秒";
             } else { //如果投票已經截止
               echo "<span style='color:grey;'>投票已截止</span>";
             }
