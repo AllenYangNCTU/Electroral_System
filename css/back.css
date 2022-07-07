@@ -137,6 +137,7 @@ ul {
   border: 1px solid #ccc;
   border-radius: 1rem;
   background: rgb(255, 117, 117);
+  /* background: rgb(15, 203, 181); */
   box-shadow: 3px 3px 10px #aaa;
   margin: 0 5px;
 }

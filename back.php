@@ -11,13 +11,27 @@
   <title>投票管理中心</title>
   <link rel="stylesheet" href="./css/back.css">
   <style>
-    .subject_container {
+    .subject_container_open {
       display: flex;
       justify-content: space-evenly;
       border-radius: 15px;
     }
 
-    .subject_container:hover {
+    .subject_container_open:hover {
+      background-color: #fed6e3;
+      /* background-color: #a8edea; */
+      transform: scale(1.05, 1.05);
+      transition: all 0.5s ease-out;
+    }
+
+    .subject_container_close {
+      display: flex;
+      justify-content: space-evenly;
+      border-radius: 15px;
+      background-color: #aaa;
+    }
+
+    .subject_container_close:hover {
       background-color: #fed6e3;
       /* background-color: #a8edea; */
       transform: scale(1.05, 1.05);
@@ -32,6 +46,7 @@
       font-size: 20px;
       display: flex;
       align-items: center;
+      justify-content: center;
       /* margin-left: 4%; */
     }
 
@@ -45,6 +60,7 @@
       padding-left: 3%;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
 
     .list-header {
@@ -148,11 +164,21 @@
           <?php
           $subjects = show_table_contents('subjects'); //取得所有投票列表
           foreach ($subjects as $subject) { //使用迴圈印內容
-            echo "<div class='subject_container'>";
+
+            if (!$subject['switch']) {
+              $subject_container = "subject_container_close";
+            } else {
+              $subject_container = "subject_container_open";
+            }
+
+
+
+
+            echo "<div class=$subject_container>";
             $sql_title = "select name from types where  `id`= '{$subject["type_id"]}'";
             $typename = $pdo->query($sql_title)->fetch(PDO::FETCH_ASSOC);
             echo "<div class='subject_li'>{$typename['name']}</div>";
-            echo "<div class='subject_li_title'>{$subject['subject']}</div>"; //只取得欄位
+            echo "<div class='subject_li'>{$subject['subject']}</div>"; //只取得欄位
 
             if ($subject['multiple'] == 0) {
               echo "<div class='subject_li'>單選題</div>";
@@ -164,11 +190,17 @@
             echo $subject['start'] . "~" . $subject['end'];
             echo "</div>";
 
+
+
+
             echo "<div class='subject_li'>"; //投票剩餘天數
             $today = strtotime("now");
             $end = strtotime($subject['end']);
+
+
+
             if (($end - $today) > 0) { //如果投票還在進行
-              $remain = floor(($end - $today) / (60 * 60 * 24));
+              $remain = ceil(($end - $today) / (60 * 60 * 24));
               echo "倒數" . $remain . "天結束";
             } else { //如果投票已經截止
               echo "<span style='color:grey;'>投票已截止</span>";
@@ -180,7 +212,7 @@
             echo "<div class='subject_li'>"; //操作區
             echo "<a class='edit' href='?do=edit&id={$subject['id']}'>編輯</a>";
             echo "<a class='del' href='?do=del&id={$subject['id']}'>刪除</a>";
-            echo "<a class='chmod' href='?do=del&id={$subject['id']}'>開關</a>";
+            echo "<a class='chmod' href='./chmod.php?id={$subject['id']}'>開關</a>";
             echo "</div>";
             echo "</div>";
           }
