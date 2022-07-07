@@ -126,7 +126,7 @@
       color: #fff;
     }
 
-    .secret_ballot {
+    .secret_ballot_secret {
       display: inline-block;
       padding: 3px 12px;
       border: 1px solid #ccc;
@@ -138,7 +138,24 @@
       font-size: 10px;
     }
 
-    .secret_ballot:hover {
+    .secret_ballot_secret:hover {
+      background: #504d78;
+      color: #fff;
+    }
+
+    .secret_ballot_open {
+      display: inline-block;
+      padding: 3px 12px;
+      border: 1px solid #ccc;
+      border-radius: 1rem;
+      background: #d8e12e;
+      /* background: rgb(15, 203, 181); */
+      box-shadow: 3px 3px 10px #aaa;
+      /* margin: 0 5px; */
+      font-size: 10px;
+    }
+
+    .secret_ballot_open:hover {
       background: #504d78;
       color: #fff;
     }
@@ -231,7 +248,12 @@
             echo "<a class='edit' href='?do=edit&id={$subject['id']}'>編輯</a>";
             echo "<a class='del' href='?do=del&id={$subject['id']}'>刪除</a>";
             echo "<a class='chmod' href='./chmod.php?id={$subject['id']}'>開關</a>";
-            echo "<a class='secret_ballot' href='./secret_ballot.php?id={$subject['id']}'>記名</a>";
+            if ($subject['secret']) {
+              $secret_ballot_class = "secret_ballot_secret";
+            } else {
+              $secret_ballot_class = "secret_ballot_open";
+            }
+            echo "<a class=$secret_ballot_class href='./secret_ballot.php?id={$subject['id']}'>記名</a>";
             echo "</div>";
             echo "</div>";
           }
