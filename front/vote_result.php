@@ -68,13 +68,23 @@
     tr {
       text-align: center;
     }
+
+    button {
+      cursor: pointer;
+      border: none
+    }
   </style>
 </head>
 
 <body>
   <!-- 上方選單 -->
   <nav>
-    <?php include "./layout/header.php"; ?>
+    <?php
+    include "../layout/header.php";
+    include "../api/base.php";
+
+    ?>
+
   </nav>
   <!-- 主要內容 -->
   <div class="container">
@@ -91,22 +101,25 @@
     <h1 class="text-center"><?= $subject['subject']; ?></h1>
 
     <div style="width: 600px;margin:auto">
-      <div style="text-align: center; margin:1rem;">總投票數:<?= $subject['total']; ?></div>
-      <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
+      <div style="text-align: center; margin:1rem;">總投票數: <?= $subject['total']; ?></div>
       <?php
       // dd($member_had_voted);
-      $memberarray = [];
-      foreach ($member_had_voted as $key => $member) {
-        $memberarray[] = $member['acc'];
+      $member_total_array = [];
+      foreach ($member_had_voted as $member) {
+        $member_total_array[] = $member['acc'];
       }
-      $memberstring = implode(', ', $memberarray);
+      $member_total_string = implode(', ', $member_total_array);
+      // print($memberstring);
       ?>
-      <div style="text-align: center; margin:1rem;"><?= $memberstring; ?></div>
+      <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
+      <div style="text-align: center; margin:1rem;"><?php print($member_total_string); ?></div>
+
       <table class="result-table">
         <tr>
           <td>選項</td>
           <td>投票數</td>
           <td>比例</td>
+          <td>帳號</td>
         </tr>
         <?php
         $sum = 0;
@@ -120,11 +133,26 @@
           <tr>
             <td><?= $opt['option']; ?></td>
             <td><?= $opt['total']; ?></td>
-            <td>
+            <td style="text-align:left">
               <!-- 長條圖 -->
+
               <div style="display:inline-block;height:24px;background-image: linear-gradient(to left, #fed6e3 0%, #a8edea 100%);width:<?= 300 * $rate; ?>px;"></div>
+
               <?= number_format($rate * 100) . "%"; ?>
             </td>
+            <?php
+            $sqloption = "select acc from users where id in (select user_id from logs where option_id={$opt['id']})";
+            $optionresult = $pdo->query($sqloption)->fetchAll(PDO::FETCH_ASSOC);
+            $userarray = [];
+            foreach ($optionresult as $optionmember) {
+              $userarray[] = $optionmember['acc'];
+            }
+
+            $memberstring = "";
+            $memberstring .= implode(', ', $userarray);
+
+            ?>
+            <td><?php print($memberstring); ?> </td>
           </tr>
         <?php
         }
@@ -162,7 +190,8 @@
       ?>
             <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
           <?php } else { ?>
-            <button class="logbtn">無法投票</button>
+            <!-- <button class="logbtn">無法投票</button> -->
+            <div style="text-align: center; margin:1rem;">您已投過票</div>
             <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
 
         <?php
