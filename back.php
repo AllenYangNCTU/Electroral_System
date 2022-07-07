@@ -30,6 +30,8 @@
       text-align: center;
       font-weight: bold;
       font-size: 20px;
+      display: flex;
+      align-items: center;
       /* margin-left: 4%; */
     }
 
@@ -41,6 +43,8 @@
       font-size: 20px;
       /* margin-left: 4%; */
       padding-left: 3%;
+      display: flex;
+      align-items: center;
     }
 
     .list-header {
@@ -55,6 +59,55 @@
       background: #504d78;
       color: #ccc;
       /* border-radius: 15px; */
+    }
+
+    .chmod {
+      display: inline-block;
+      padding: 3px 12px;
+      border: 1px solid #ccc;
+      border-radius: 1rem;
+      background: rgb(15, 203, 181);
+      box-shadow: 3px 3px 10px #aaa;
+      /* margin: 0 5px; */
+      font-size: 10px;
+    }
+
+    .chmod:hover {
+      background: #504d78;
+      color: #fff;
+    }
+
+    .edit {
+      display: inline-block;
+      padding: 3px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-shadow: 3px 3px 10px #aaa;
+      /* margin: 0 5px; */
+      font-size: 10px;
+    }
+
+    .edit:hover {
+      background: #504d78;
+      color: #fff;
+    }
+
+    /* 列表的刪除按鈕 */
+    .del {
+      display: inline-block;
+      padding: 3px 12px;
+      border: 1px solid #ccc;
+      border-radius: 1rem;
+      background: rgb(255, 117, 117);
+      /* background: rgb(15, 203, 181); */
+      box-shadow: 3px 3px 10px #aaa;
+      /* margin: 0 5px; */
+      font-size: 10px;
+    }
+
+    .del:hover {
+      background: #504d78;
+      color: #fff;
     }
   </style>
 </head>
@@ -127,6 +180,7 @@
             echo "<div class='subject_li'>"; //操作區
             echo "<a class='edit' href='?do=edit&id={$subject['id']}'>編輯</a>";
             echo "<a class='del' href='?do=del&id={$subject['id']}'>刪除</a>";
+            echo "<a class='chmod' href='?do=del&id={$subject['id']}'>開關</a>";
             echo "</div>";
             echo "</div>";
           }

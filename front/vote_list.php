@@ -30,6 +30,9 @@
       text-align: center;
       font-weight: bold;
       font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       /* margin-left: 4%; */
     }
 
@@ -41,6 +44,9 @@
       font-size: 20px;
       /* margin-left: 4%; */
       padding-left: 3%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       /* background-color: #a8edea; */
     }
 
