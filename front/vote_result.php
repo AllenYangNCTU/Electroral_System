@@ -16,11 +16,48 @@
     .logbtn {
       width: 40%;
       margin-top: 1rem;
+      height: 40px;
     }
 
     .cannotpollbtn {
       width: 40%;
       margin-top: 1rem;
+    }
+
+    #uploadForm {
+      width: 400px;
+      margin: 1rem auto;
+      font-size: 1.25rem;
+      padding: 1rem;
+    }
+
+    #list {
+      border-collapse: collapse;
+      box-shadow: 0 0 10px #ccc;
+      margin: 1rem auto;
+    }
+
+    #list img {
+      width: 150px;
+    }
+
+    #list td,
+    #list th {
+      border: 1px solid #ccc;
+      padding: 0.5rem 1.1rem;
+      font-size: 1.15rem;
+    }
+
+    #list tr:hover {
+      background: lightgreen;
+      transform: scale(1.1);
+    }
+
+    .reload {
+      display: block;
+      margin: 0 auto;
+      padding: 0.1rem 0.3rem;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -91,15 +128,33 @@
         // $undosql = "UPDATE `options` SET `total` = total - 1  WHERE id in (SELECT option_id FROM `logs` WHERE user_id = (select id from `users` where acc = '{$_SESSION['user']}') and subject_id='{$_GET['id']}'); UPDATE subjects set total = total - 1  where id='{$_GET['id']}'; delete from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}')";
         // $undo = $pdo->exec($undosql);
         $id = $_GET['id'];
-        if (!$cannotpoll['number']) {
-      ?>
-          <button class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
 
-        <?php } else { ?>
-          <button class="logbtn">無法投票</button>
-          <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
+
+        $sqlforbidden = "select * from subjects where id={$_GET['id']}";
+        $forbidden = $pdo->query($sqlforbidden)->fetch(PDO::FETCH_ASSOC);
+
+        $today = strtotime("now");
+        $end = strtotime($forbidden['end']);
+        if ($forbidden['switch'] == 1 && (strtotime($forbidden['end']) - strtotime("now")) > 0) {
+
+          if (!$cannotpoll['number']) {
+      ?>
+            <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
+          <?php } else { ?>
+            <button class="logbtn">無法投票</button>
+            <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
 
         <?php
+          }
+        } else if ($forbidden['switch'] == 1 && (strtotime($forbidden['end']) - strtotime("now")) <= 0) {
+          // print("投票時間已經截止，如有疑問請聯絡管理員");
+          print("<div style='text-align: center; margin:1rem;'>投票時間已經截止，如有疑問請聯絡管理員</div>");
+        } else if ($forbidden['switch'] == 0 && (strtotime($forbidden['end']) - strtotime("now")) > 0) {
+          // print("投票已被暫時關閉，如有疑問請聯絡管理員");
+          print("<div style='text-align: center; margin:1rem;'>投票已被暫時關閉，如有疑問請聯絡管理員</div>");
+        } else {
+          // print("投票已被暫時關閉，且投票時間已經截止，如有疑問請聯絡管理員");
+          print("<div style='text-align: center; margin:1rem;'>投票已被暫時關閉，且投票時間已經截止，如有疑問請聯絡管理員</div>");
         }
         ?>
         <!-- 如果登入才顯示投票按鈕 -->
