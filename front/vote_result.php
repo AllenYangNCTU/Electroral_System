@@ -96,9 +96,16 @@
     $sqlmember_had_voted = "SELECT acc FROM `users` WHERE id in (select user_id from logs where subject_id={$_GET['id']});";
     $member_had_voted = $pdo->query($sqlmember_had_voted)->fetchAll(PDO::FETCH_ASSOC);
     // print($sqlmember_had_voted);
+    $secret = "";
+    if ($subject['secret']) {
+      $secret = "";
+    } else {
+      $secret = "不";
+    }
     ?>
 
-    <h1 class="text-center"><?= $subject['subject']; ?></h1>
+    <h1 class="text-center"><?= $subject['subject'];
+                            print("(" . $secret . "記名投票)"); ?></h1>
 
     <div style="width: 600px;margin:auto">
       <div style="text-align: center; margin:1rem;">總投票數: <?= $subject['total']; ?></div>
@@ -110,16 +117,24 @@
       }
       $member_total_string = implode(', ', $member_total_array);
       // print($memberstring);
+      if ($subject['secret']) {
       ?>
-      <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
-      <div style="text-align: center; margin:1rem;"><?php print($member_total_string); ?></div>
+        <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
+        <div style="text-align: center; margin:1rem;"><?php print($member_total_string); ?></div>
+      <?php
+      }
+      ?>
 
       <table class="result-table">
         <tr>
           <td>選項</td>
           <td>投票數</td>
           <td>比例</td>
-          <td>帳號</td>
+          <?php
+          if ($subject['secret']) {
+          ?>
+            <td>帳號</td><?php
+                      } ?>
         </tr>
         <?php
         $sum = 0;
@@ -150,9 +165,12 @@
 
             $memberstring = "";
             $memberstring .= implode(', ', $userarray);
-
+            if ($subject['secret']) {
             ?>
-            <td><?php print($memberstring); ?> </td>
+              <td><?php print($memberstring); ?> </td>
+            <?php
+            }
+            ?>
           </tr>
         <?php
         }
