@@ -125,6 +125,23 @@
       background: #504d78;
       color: #fff;
     }
+
+    .secret_ballot {
+      display: inline-block;
+      padding: 3px 12px;
+      border: 1px solid #ccc;
+      border-radius: 1rem;
+      background: #ff9a57;
+      /* background: rgb(15, 203, 181); */
+      box-shadow: 3px 3px 10px #aaa;
+      /* margin: 0 5px; */
+      font-size: 10px;
+    }
+
+    .secret_ballot:hover {
+      background: #504d78;
+      color: #fff;
+    }
   </style>
 </head>
 
@@ -148,7 +165,7 @@
       include $file;
     } else {
     ?>
-      <button class=btn onclick="location.href='?do=add_vote'">新增投票</button><!-- get傳值檔案名稱 -->
+      <button style="margin-left:5rem;" class=btn onclick="location.href='?do=add_vote'">新增投票</button><!-- get傳值檔案名稱 -->
 
       <div>
         <ul>
@@ -214,6 +231,7 @@
             echo "<a class='edit' href='?do=edit&id={$subject['id']}'>編輯</a>";
             echo "<a class='del' href='?do=del&id={$subject['id']}'>刪除</a>";
             echo "<a class='chmod' href='./chmod.php?id={$subject['id']}'>開關</a>";
+            echo "<a class='secret_ballot' href='./secret_ballot.php?id={$subject['id']}'>記名</a>";
             echo "</div>";
             echo "</div>";
           }
