@@ -28,9 +28,9 @@ $opts = all('options', ['subject_id' => $id]);
       <input type="text" name="subject" id="subject" value="<?= $subj['subject']; ?>">
       <input type="button" value="新增選項" onclick="addOption()"><br><br><!-- 點下這個按鈕 執行addOption的內容 -->
       <label for="">開始時間:</label>
-      <input type="date" name="start" id=""><br><br>
+      <input type="date" name="start" value="<?= $subj['start']; ?>" id=""><br><br>
       <label for="">結束時間:</label>
-      <input type="date" name="end" id="">
+      <input type="date" name="end" value="<?= $subj['end']; ?>" id="">
       <input type="hidden" name="subject_id" value="<?= $subj['id']; ?>">
     </div>
     <div id="selector" class="vote-sub">
