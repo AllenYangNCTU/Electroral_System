@@ -11,6 +11,7 @@
   <style>
     .container {
       width: 100vh;
+      overflow: scroll;
     }
 
     .logbtn {
@@ -74,13 +75,25 @@
 
     $subject = find_something_in_table("subjects", $_GET['id']);
     $opts = show_table_contents("options", ['subject_id' => $_GET['id']]);
-
+    $sqlmember_had_voted = "SELECT acc FROM `users` WHERE id in (select user_id from logs where subject_id={$_GET['id']});";
+    $member_had_voted = $pdo->query($sqlmember_had_voted)->fetchAll(PDO::FETCH_ASSOC);
+    // print($sqlmember_had_voted);
     ?>
 
     <h1 class="text-center"><?= $subject['subject']; ?></h1>
 
     <div style="width: 600px;margin:auto">
       <div style="text-align: center; margin:1rem;">總投票數:<?= $subject['total']; ?></div>
+      <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
+      <?php
+      // dd($member_had_voted);
+      $memberarray = [];
+      foreach ($member_had_voted as $key => $member) {
+        $memberarray[] = $member['acc'];
+      }
+      $memberstring = implode(', ', $memberarray);
+      ?>
+      <div style="text-align: center; margin:1rem;"><?= $memberstring; ?></div>
       <table class="result-table">
         <tr>
           <td>選項</td>
