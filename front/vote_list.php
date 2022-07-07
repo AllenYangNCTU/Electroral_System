@@ -220,13 +220,30 @@
         echo "<div class='subject_li remain_days'>"; //投票剩餘天數
         $today = strtotime("now");
         $end = strtotime($subject['end']);
-        if (($end - $today) > 0) { //如果投票還在進行
+
+
+
+
+
+
+
+
+
+        if ((($end - $today) > 0) && $subject['switch'] == 1) { //如果投票還在進行
           $remain = floor(($end - $today) / (60 * 60 * 24));
           echo "倒數" . $remain . "天結束";
-        } else { //如果投票已經截止
-          echo "<span style='color:grey;'>投票已截止</span>";
+        } else if ((($end - $today) > 0) && $subject['switch'] == 0) { //如果投票已經截止
+          echo "<span style='color:grey;'>投票暫時關閉</span>";
+        } else {
+          echo "<span style='color:grey;'>投票已結束</span>";
         }
         echo "</div>";
+
+
+
+
+
+
 
         echo "<div class='subject_li'>{$subject['total']}</div>"; //投票總人數
         echo "</div>";
