@@ -64,6 +64,10 @@
       padding: 0.1rem 0.3rem;
       font-size: 1rem;
     }
+
+    tr {
+      text-align: center;
+    }
   </style>
 </head>
 
