@@ -22,6 +22,10 @@ nav {
   margin-top: 1rem;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* 主要內容 */
 .container {
   width: 160vh;

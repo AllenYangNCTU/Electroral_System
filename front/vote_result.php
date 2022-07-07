@@ -9,6 +9,10 @@
   <!-- <link rel="stylesheet" href="./css/index.css"> -->
   <link rel="stylesheet" href="./css/login.css">
   <style>
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
     .container {
       width: 100vh;
       overflow: scroll;
