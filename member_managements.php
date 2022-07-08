@@ -121,7 +121,7 @@
                 <div class="subject_li"> <?php print($result['name']); ?></div>
                 <div class="subject_li"> <?php print($result['birthday']); ?></div>
                 <div class="subject_li"> <?php print($result['addr']); ?></div>
-                <div class="subject_li"> <?php print($result['email']); ?></div>
+                <div style="text-align:left;" class="subject_li"> <?php print($result['email']); ?></div>
                 <div class="subject_li"></div>
                 <div class="subject_li"> <?php print((($result['admin']) ? "管理員" : "一般會員")); ?></div>
 
