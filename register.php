@@ -50,11 +50,11 @@
       </div>
       <div class="txtb">
         <input type="password" name="pw" id="">
-        <span data-placeholder="密碼"></span>
+        <span data-placeholder="密碼(密碼請包含大寫、小寫、數字，且長度介於8~16)"></span>
       </div>
       <div class="txtb">
         <input type="password" name="re_pw" id="">
-        <span data-placeholder="再次確認密碼"></span>
+        <span data-placeholder="再次輸入密碼(密碼請包含大寫、小寫、數字，且長度介於8~16)"></span>
       </div>
       <div class="txtb">
         <input type="text" name="name" id="">
