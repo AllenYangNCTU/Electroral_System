@@ -167,14 +167,6 @@
           $filter = ['type_id' => $_GET['filter']];
         }
       }
-
-      // $search = [];
-      // if (isset($_POST['search_string'])) {
-      //   if (!$_POST['search_string'] == 0) {
-      //     $search = ['subject' => $_POST['search_string']];
-      //   }
-      // }
-
       $total = count_avg_min_max('subjects', 'count', 'id', $filter);
       $div = 10;
       $pages = ceil($total / $div);

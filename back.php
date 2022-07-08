@@ -165,6 +165,17 @@
       include $file;
     } else {
     ?>
+      <form style="margin-left:5rem;" action="./index.php?filter=0<?= $p; ?><?= $querystr; ?>" method="post">
+        <input type="text" name="search_string" id="" placeholder="search">
+        <input type="submit" value="送出">
+      </form>
+      <?php
+      if (isset($_POST['search_string'])) {
+
+        $sql_search = "select * from subjects where subject like '%{$_POST['search_string']}%'";
+        $search = $pdo->query($sql_search)->fetchAll(PDO::FETCH_ASSOC);
+      }
+      ?>
       <button style="margin-left:5rem;" class=btn onclick="location.href='?do=add_vote'">新增投票</button>
       <div>
         <ul>
@@ -178,6 +189,9 @@
             <div>操作：</div>
           </li>
           <?php
+          if (isset($_POST['search_string'])) {
+            $subjects = $search;
+          }
           $subjects = show_table_contents('subjects');
           foreach ($subjects as $subject) {
             if (!$subject['switch']) {
