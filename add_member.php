@@ -1,16 +1,12 @@
 <?php
-include "./api/base.php"; //連線資料庫
+include "./api/base.php";
 $sql_test = "select count(acc) as number from `users` where acc = '{$_POST["acc"]}'";
 $acc = $pdo->query($sql_test)->fetch(PDO::FETCH_ASSOC);
 if (($_POST['pw'] == $_POST['re_pw']) && $acc['number'] == 0) {
-
-
-    $pw = md5($_POST['pw']); //把密碼用MP5顯示
+    $pw = md5($_POST['pw']);
     $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`addr`,`email`,`passnote`) 
                     values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['addr']}','{$_POST['email']}','{$_POST['passnote']}');";
-
     $pdo->exec($sql);
-
     header_to("./login.php");
 } else if (($_POST['pw'] != $_POST['re_pw']) && $acc['number'] == 0) {
     print("密碼前後不一致");

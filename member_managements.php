@@ -11,7 +11,6 @@
         .subject_container_member {
             display: flex;
             justify-content: space-evenly;
-            /* float: left; */
         }
 
         .subject_container_member:hover {
@@ -25,8 +24,6 @@
             display: flex;
             justify-content: space-evenly;
             background-color: #e5c667;
-
-            /* float: left; */
         }
 
         .subject_container_admin:hover {
@@ -42,12 +39,7 @@
             text-align: center;
             font-weight: bold;
             font-size: 15px;
-            /* border-top: 3px solid lightgray; */
-            /* background-color: red; */
-            /* margin-left: 4%; */
         }
-
-
 
         .subject_li_title {
             width: calc(100% / 10);
@@ -55,12 +47,10 @@
             text-align: left;
             font-weight: bold;
             font-size: 15px;
-            /* margin-left: 4%; */
             padding-left: 3%;
         }
 
         .btn_manage {
-            /* margin-left: 5rem; */
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 20px;
@@ -70,11 +60,9 @@
             box-sizing: 0 0 10px #ccc;
             border: none;
             outline: none;
-
         }
 
         .btn_cannot_change {
-            /* margin-left: 5rem; */
             display: inline-block;
             border: 1px solid #ccc;
             border-radius: 20px;
@@ -84,7 +72,6 @@
             box-sizing: 0 0 10px #ccc;
             border: none;
             outline: none;
-
         }
 
         .btn_manage:hover {
@@ -108,18 +95,15 @@
     </nav>
 
     <h1>會員列表</h1>
-    <!-- <a href="./member_center.php">返回</a><br><br><br> -->
     <div>
         <ul>
             <li class="list-header">
                 <div>ID：</div>
                 <div>Acccount：</div>
-                <!-- <div>Passwords：</div> -->
                 <div>Name：</div>
                 <div>Birthday：</div>
                 <div>Address：</div>
                 <div>E-mail：</div>
-                <!-- <div>Passnote：</div> -->
                 <div></div>
                 <div>會員等級：</div>
                 <div>刪除使用者：</div>
@@ -142,33 +126,29 @@
                 <div class="subject_li"> <?php print((($result['admin']) ? "管理員" : "一般會員")); ?></div>
 
                 <?php
-                if (isset($_GET['do'])) { //如果有取得do這個頁面的話執行
-                    $file = "./back/" . $_GET['do'] . ".php"; //導向網址
+                if (isset($_GET['do'])) {
+                    $file = "./back/" . $_GET['do'] . ".php";
                 }
 
-                if (isset($file) && file_exists($file)) { //判斷如果有檔案在載入
+                if (isset($file) && file_exists($file)) {
                     include $file;
                 } else if (!$result['admin']) {
                 ?>
-
                     <div class="subject_li"><button class=btn_manage onclick="location.href='./back/remove_account.php?do=remove_account&id=<?= $result['id']; ?>'">刪使用者</button></div> <!-- get傳值檔案名稱 -->
                     <div class="subject_li"><button class=btn_manage onclick="location.href='./back/chmod.php?do=chmod&action=upgrade&id=<?= $result['id']; ?>'">提高等級</button></div>
-
                 <?php
                 } else if ($result['acc'] != $_SESSION['user']) {
                 ?>
-                    <div class="subject_li"><button class=btn_cannot_change>須先降級</button></div> <!-- get傳值檔案名稱 -->
+                    <div class="subject_li"><button class=btn_cannot_change>須先降級</button></div>
                     <div class="subject_li"><button class=btn_manage onclick="location.href='./back/chmod.php?do=chmod&action=downgrade&id=<?= $result['id']; ?>'">降低等級</button></div>
                 <?php } else { ?>
-                    <div class="subject_li"><button class=btn_cannot_change>不能刪除</button></div> <!-- get傳值檔案名稱 -->
+                    <div class="subject_li"><button class=btn_cannot_change>不能刪除</button></div>
                     <div class="subject_li"><button class=btn_cannot_change>不能更改</button></div>
             <?php
                 }
                 echo "</div>";
             }
-
             ?>
-
         </ul>
     </div>
     <a href="#">TOP</a>

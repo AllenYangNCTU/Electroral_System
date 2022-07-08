@@ -78,19 +78,12 @@
 </head>
 
 <body>
-  <!-- 上方選單 -->
   <nav>
     <?php include "./layout/header.php"; ?>
   </nav>
-  <!-- 主要內容 -->
   <div class="container">
-
-
     <form action="chklogin.php" method="post">
-
       <h1>帳號登入</h1>
-
-
       <?php
       if (isset($_GET['error'])) { //如果錯誤的話顯示帳密錯誤訊息
       ?>
@@ -98,36 +91,24 @@
       <?php
       }
       ?>
-
       <div class="txtb">
         <input type="text" name="acc">
         <span data-placeholder="帳號"></span>
       </div>
-
       <div class="txtb">
         <input type="password" name="pw">
         <span data-placeholder="密碼"></span>
       </div>
-
-
-
-
-      <!-- <button onclick="location.reload()" class='reload'>重新產生驗證碼</button> -->
       <button onclick="location.refresh()" class='reload'>重新產生驗證碼</button>
       <?php
-
       //使用亂數來產生驗證碼長度
       $length = rand(4, 8);
-
       //定義字型大小
       $fontsize = 24;
-
       //宣告一個空字串，用來存放驗證碼字串
       $gstr = "";
-
       //使用for迴圈來產生符合$length的驗證碼
       for ($i = 0; $i < $length; $i++) {
-
         //使用while迴圈來判斷字串是否有重覆的字元
         while (mb_strlen($gstr) < $i + 1) {
 
@@ -186,9 +167,6 @@
         $text_info[$char]['x'] = min($tmp[0], $tmp[2], $tmp[4], $tmp[6]);
         $text_info[$char]['y'] = min($tmp[1], $tmp[3], $tmp[5], $tmp[7]);
       }
-
-      //dd($text_info);
-      //exit();
 
       //建立一個邊框的厚度變數
       $border = 10;
@@ -281,17 +259,13 @@
       <div style="width:500px;margin:auto;">
         <img src="./upload/text.jpg" alt="" style="border:2px solid black">
       </div>
-
       <div class="txtb">
         <input type="text" name="verification">
         <span data-placeholder="請輸入驗證碼"></span>
       </div>
-
-
       <div>
         <input type="submit" class="logbtn" value="登入">
       </div>
-
       <div class="bottom-text">
         <a href="register.php">尚未註冊?</a>
         <a href="forgot.php">忘記密碼?</a>
@@ -299,15 +273,11 @@
       <input type="hidden" name="verification_string" value="<?= $gstr; ?>">
     </form>
   </div>
-
-  <!-- 頁尾 -->
   <?php include "./layout/footer.php"; ?>
-
   <script type="text/javascript">
     $(".txtb input").on("focus", function() {
       $(this).addClass("focus");
     });
-
     $(".txtb input").on("blur", function() {
       if ($(this).val() == "")
         $(this).removeClass("focus");

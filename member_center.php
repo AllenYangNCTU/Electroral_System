@@ -25,7 +25,6 @@
 
     .remove {
       text-align: center;
-      /* margin-left: 25vw; */
       color: #eee;
     }
 
@@ -77,26 +76,19 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
 ?>
 
 <body>
-  <!-- 上方選單 -->
-  <!-- <nav>
-    </nav> -->
   <?php
-  // include "./layout/header.php"; 
   ?>
   <?php include "./layout/front_nav.php"; ?>
-  <!-- 主要內容 -->
   <div class="container">
     <h1>會員中心</h1>
 
     <?php
-    // if ($_SESSION['user'] != 'admin') {
     if (!$user['admin']) {
     ?>
       <a class="remove" href="remove_acc.php?id=<?= $user['id']; ?>">刪除帳號</a>
     <?php
     }
     ?>
-
     <h2>歡迎~<?= $_SESSION['user']; ?>~</h2>
     <div>
       <span>序號：</span>
@@ -108,14 +100,7 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     </div>
     <div class="inputBox">
       <span>密碼：<a href="./back/update_pwd.php?account=<?= $user['acc']; ?>">修改密碼</a>
-        <!-- <input type="password" placeholder="密碼" id="password" value=" -->
-        <?php
-        //  $user['pw']; 
-        ?>
-        <!-- "> -->
       </span>
-      <!-- 偵測按下去時執行 function showHide的內容 -->
-      <!-- <span id="toggle" onclick="showHide();"></span> -->
     </div>
     <div>
       <span>姓名：</span>
@@ -135,9 +120,6 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     </div>
     <div>
       <span>密碼提示：</span>
-      <?php
-      // $user['passnote']; 
-      ?>
     </div>
     <div>
       <span>等級：</span>
@@ -150,29 +132,21 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     </div>
 
     <form action="edit.php" method="post">
-      <input type="hidden" name="id" value="<?= $user['id']; ?>"> <!-- 隱藏按鈕帶參數過去 -->
+      <input type="hidden" name="id" value="<?= $user['id']; ?>">
       <input type="submit" class="logbtn" value="編輯">
     </form>
 
   </div>
-  <!-- 頁尾 -->
   <?php include "./layout/footer.php"; ?>
-
   <script>
-    // 宣告一個password 是id-password裡面的內容
     const password = document.getElementById('password')
-    // 宣告一個toggle 是取得id toggle的內容
     const toggle = document.getElementById('toggle')
 
-    // 設定一個function 叫做showHide
     function showHide() {
-      // 如果 password的內容 跟 password相同時
       if (password.type === 'password') {
-        // 設定為文本顯示
         password.setAttribute('type', 'text')
         toggle.classList.add('hide')
       } else {
-        // 反之 隱藏密碼
         password.setAttribute('type', 'password')
         toggle.classList.remove('hide')
       }
