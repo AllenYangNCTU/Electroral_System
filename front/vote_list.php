@@ -74,10 +74,23 @@
 
   ?>
   <h1>投票列表</h1>
-  <!-- 分類 -->
   <div id="list">
+    <form action="./index.php?filter=0<?= $p; ?><?= $querystr; ?>" method="post">
+      <input type="text" name="search_string" id="" placeholder="search">
+      <input type="submit" value="送出">
+    </form>
+    <?php
+    if (isset($_POST['search_string'])) {
+
+      $sql_search = "select * from subjects where subject like '%{$_POST['search_string']}%'";
+      $search = $pdo->query($sql_search)->fetchAll(PDO::FETCH_ASSOC);
+    }
+    ?>
     <label for="types">分類</label>
+
+
     <select name="types" id="types" onchange="location.href=`?filter=${this.value}<?= $p; ?><?= $querystr; ?>`">
+
       <option value="0">全部</option>
       <?php
       $types = show_table_contents("types");
@@ -155,13 +168,26 @@
         }
       }
 
+      // $search = [];
+      // if (isset($_POST['search_string'])) {
+      //   if (!$_POST['search_string'] == 0) {
+      //     $search = ['subject' => $_POST['search_string']];
+      //   }
+      // }
+
       $total = count_avg_min_max('subjects', 'count', 'id', $filter);
       $div = 10;
       $pages = ceil($total / $div);
       $now = isset($_GET['p']) ? $_GET['p'] : 1;
       $start = ($now - 1) * $div;
       $page_rows = " limit $start,$div";
-      $subjects = show_table_contents('subjects', $filter, $orderStr . $page_rows);
+      if (isset($_POST['search_string'])) {
+        $subjects = $search;
+      } else {
+
+        $subjects = show_table_contents('subjects', $filter, $orderStr . $page_rows);
+      }
+
       foreach ($subjects as $subject) {
         $subject_container_style =  "subject_container";
         if (isset($_SESSION['user'])) {
