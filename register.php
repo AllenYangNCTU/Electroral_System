@@ -76,11 +76,9 @@
         <input type="passnote" name="passnote" id="">
         <span data-placeholder="密碼提示"></span>
       </div>
-
       <div>
         <input type="submit" class="logbtn" value="送出">
       </div>
-
     </form>
   </div>
   <!-- 頁尾 -->
@@ -96,7 +94,6 @@
         $(this).removeClass("focus");
     });
   </script>
-
 </body>
 
 </html>

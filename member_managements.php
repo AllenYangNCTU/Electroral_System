@@ -113,18 +113,14 @@
             $results = show_table_contents("users");
             foreach ($results as $key => $result) {
                 echo "<div class='subject_container'>";
-                //  print("User #" . $key + 1);
             ?>
-
                 <div class="subject_li"> <?php print("ID: " . $result['id']); ?></div>
                 <div class="subject_li"> <?php print($result['acc']); ?></div>
                 <div class="subject_li"> <?php print($result['name']); ?></div>
                 <div class="subject_li"> <?php print($result['birthday']); ?></div>
                 <div class="subject_li"> <?php print($result['addr']); ?></div>
                 <div class="subject_li"> <?php print($result['email']); ?></div>
-                <div class="subject_li"> <?php
-                                            // print($result['passnote']); 
-                                            ?></div>
+                <div class="subject_li"></div>
                 <div class="subject_li"> <?php print((($result['admin']) ? "管理員" : "一般會員")); ?></div>
 
                 <?php
