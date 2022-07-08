@@ -8,10 +8,32 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/back.css">
     <style>
-        .subject_container {
+        .subject_container_member {
             display: flex;
             justify-content: space-evenly;
             /* float: left; */
+        }
+
+        .subject_container_member:hover {
+            background-color: #fed6e3;
+            transform: scale(1.05, 1.05);
+            transition: all 0.5s ease-out;
+            border-radius: 10px;
+        }
+
+        .subject_container_admin {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #e5c667;
+
+            /* float: left; */
+        }
+
+        .subject_container_admin:hover {
+            background-color: #fed6e3;
+            transform: scale(1.05, 1.05);
+            transition: all 0.5s ease-out;
+            border-radius: 10px;
         }
 
         .subject_li {
@@ -25,12 +47,7 @@
             /* margin-left: 4%; */
         }
 
-        .subject_container:hover {
-            background-color: #fed6e3;
-            transform: scale(1.05, 1.05);
-            transition: all 0.5s ease-out;
-            border-radius: 10px;
-        }
+
 
         .subject_li_title {
             width: calc(100% / 10);
@@ -112,7 +129,8 @@
             include_once("./api/base.php");
             $results = show_table_contents("users");
             foreach ($results as $key => $result) {
-                echo "<div class='subject_container'>";
+                $member_class = (($result['admin']) ? "subject_container_admin" : "subject_container_member");
+                echo "<div class=$member_class>";
             ?>
                 <div class="subject_li"> <?php print("ID: " . $result['id']); ?></div>
                 <div class="subject_li"> <?php print($result['acc']); ?></div>
