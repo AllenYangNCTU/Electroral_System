@@ -5,8 +5,8 @@ date_default_timezone_set('Asia/Taipei');
 $dsn = "mysql:host=localhost;charset=utf8;dbname=holie_vote";
 $pdo = new PDO($dsn, 'root', 'root');
 
-// $dsn="mysql:host=localhost;charset=utf8;dbname=s1110208";
-// $pdo=new PDO($dsn,'s1110208','s1110208');
+// $dsn="mysql:host=localhost;charset=utf8;dbname=s1110222";
+// $pdo=new PDO($dsn,'s1110222','s1110222');
 
 function pdo()
 {
@@ -14,21 +14,9 @@ function pdo()
     $dsn = "mysql:host=localhost;charset=utf8;dbname=holie_vote";
     return new PDO($dsn, 'root', 'root');
 
-    // $dsn="mysql:host=localhost;charset=utf8;dbname=s1110208";
-    // return new PDO($dsn,'s1110208','s1110208');
+    // $dsn="mysql:host=localhost;charset=utf8;dbname=s1110222";
+    // return new PDO($dsn,'s1110222','s1110222');
 }
-/**
- * $table - 資料表名稱 字串型式
- * ...$arg - 參數型態
- *           1. 沒有參數，撈出資料表全部資料
- *           2. 一個參數：
- *              a. 陣列 - 撈出符合陣列key = value 條件的全部資料
- *              b. 字串 - 撈出符合SQL字串語句的全部資料
- *           3. 二個參數：
- *              a. 第一個參數必須為陣列，同2-a描述
- *              b. 第二個參數必須為字串，同2-b描述
- */
-
 function all($table, ...$arg)
 {
     $pdo = pdo();
@@ -134,12 +122,7 @@ function show_table_contents($table, ...$arg)
     // echo $sql;
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
-/**
- * $table - 資料表名稱 字串型式
- * $arg 參數型態
- *      1. 陣列 - 撈出符合陣列key = value 條件的單筆資料
- *      2. 字串 - 必須是資料表的id，數字型態，且資料表有id這個欄位
- */
+
 
 function find($table, $arg)
 {
@@ -283,9 +266,7 @@ function  header_to($url)
 
     header("location:" . $url);
 }
-/**
- * $sql - SQL語句字串，取出符合SQL語句的全部資料
- */
+
 
 function  q($sql)
 {
@@ -325,7 +306,6 @@ function  update_or_insert_contents_in_table($table, $arg)
         //建立新增的sql語法
         $sql = "INSERT INTO $table (`$cols`) VALUES('$values')";
     }
-    //echo $sql;
     return $pdo->exec($sql);
 }
 

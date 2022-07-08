@@ -3,7 +3,6 @@
 include_once "base.php";
 
 if (isset($_POST['opt'])) {
-
   if (is_array($_POST['opt'])) {
     foreach ($_POST['opt'] as $key => $opt) {
       $option = find_something_in_table("options", $opt);
@@ -19,14 +18,12 @@ if (isset($_POST['opt'])) {
       // dd($user_id);
       $log = [
         'user_id' => $user_id['id'],
-        // 'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
         'subject_id' => $subject['id'],
         'option_id' => $option['id']
       ];
       update_or_insert_contents_in_table("logs", $log);
     }
   } else {
-    //單選題
     $option = find_something_in_table("options", $_POST['opt']);
     $option['total']++;
     update_or_insert_contents_in_table("options", $option);
@@ -36,10 +33,8 @@ if (isset($_POST['opt'])) {
 
     $sql = "select id from `users` where acc = '{$_SESSION['user']}'";
     $user_id = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-    // dd($user_id);
     $log = [
       'user_id' => $user_id['id'],
-      // 'user_id' => (isset($_SESSION['user'])) ? $_SESSION['user'] : 0,
       'subject_id' => $subject['id'],
       'option_id' => $option['id']
     ];

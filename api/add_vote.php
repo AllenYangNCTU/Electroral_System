@@ -1,10 +1,8 @@
-<!-- 儲存vote -->
 <?php
-include_once "base.php"; //引入資料庫function
+include_once "base.php";
 
-$subject = $_POST['subject']; //接收表單傳來的投票主題內容
-
-$add_subject = [ //建立資料庫內容
+$subject = $_POST['subject'];
+$add_subject = [
   'subject' => $subject,
   'type_id' => $_POST['types'],
   'multiple' => $_POST['multiple'],
@@ -13,14 +11,11 @@ $add_subject = [ //建立資料庫內容
   'starttime' => $_POST['starttime'],
   'endtime' => $_POST['endtime'],
 ];
-
-update_or_insert_contents_in_table('subjects', $add_subject); //儲存
-
-$id = find_something_in_table('subjects', ['subject' => $subject])['id']; // 取得資料庫內此筆儲存檔案的id
-
+update_or_insert_contents_in_table('subjects', $add_subject);
+$id = find_something_in_table('subjects', ['subject' => $subject])['id'];
 if (isset($_POST['option'])) {
   foreach ($_POST['option'] as $opt) {
-    if ($opt != "") { //避免空選項
+    if ($opt != "") {
       $add_option = [
         'option' => $opt,
         'subject_id' => $id
@@ -29,7 +24,4 @@ if (isset($_POST['option'])) {
     }
   }
 }
-
 header_to('../back.php');
-
-?>
