@@ -13,7 +13,6 @@
       height: 300px;
       background-color: greenyellow;
       margin: 0;
-      /* margin-left: -100px; */
       margin-left: 6%;
       margin-top: 2vh;
       border-radius: 15px;
@@ -27,8 +26,6 @@
     nav a {
       display: block;
       text-decoration: none;
-      /* padding-left: 20px; */
-      /* background-color: blue; */
       font-size: 17px;
     }
   </style>
@@ -36,8 +33,6 @@
 </head>
 
 <body>
-
-  <!-- 上方選單顯示 -->
   <?php
   if (isset($_SESSION['user'])) {
     $sql = "select admin  from `users` where acc='{$_SESSION['user']}'";
@@ -47,7 +42,7 @@
       <nav>
         <a href="index.php">回首頁</a>
         <a href="back.php">管理投票</a>
-        <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
+        <a href="logout.php">登出</a>
         <a href="member_center.php">會員中心</a>
         <a href="member_managements.php">會員列表</a>
       </nav>
@@ -56,7 +51,7 @@
     ?>
       <nav>
         <a href="index.php">回首頁</a>
-        <a href="logout.php">登出</a><!-- 如果有登入資料就顯示登出 -->
+        <a href="logout.php">登出</a>
         <a href="member_center.php">會員中心</a>
       </nav>
     <?php
@@ -72,7 +67,6 @@
       <p style="text-align:center;font-size:20px;">廣告牆</p>
       <img src="../img/header.png" alt="">
     </div>
-    <!-- 如果沒有登入資料就顯示登入 -->
   <?php
   }
   ?>
