@@ -3,7 +3,6 @@
     <label for="name">欲新增的分類名稱</label>
     <input type="text" name="typename" id="name">
   </div>
-
   <div>
     <input type="submit" class="logbtn" value="送出">
   </div>

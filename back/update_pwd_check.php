@@ -1,11 +1,9 @@
 <?php
 include_once("../api/base.php");
-
 $sql = "select pw from `users` where `acc`='{$_POST['name']}'";
-$md5pwd = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
+$md5pwd = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
 if ((md5($_POST['oldpwd']) == $md5pwd['pw']) && ($_POST['pwd'] == $_POST['re_pwd'])) {
-
     $newpwd = md5($_POST['pwd']);
     $sql = "UPDATE `users`
     SET    `pw`= '{$newpwd}'

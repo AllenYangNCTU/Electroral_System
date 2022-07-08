@@ -1,6 +1,5 @@
 <?php
 include_once("../api/base.php");
-
 ?>
 <h1 style="text-align: center">密碼驗證</h1>
 <form action="./update_pwd_check.php" method="post">
