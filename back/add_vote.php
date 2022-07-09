@@ -25,10 +25,10 @@
       <input type="date" name="end" value="2022-12-31" id=""><br><br>
       <label for="">結束時間:</label>
       <input type="time" name="endtime" value="00:02:00.000" id=""><br><br>
-      <label for="">年齡限制:</label>
+      <label for="">年齡下限:</label>
       <input type="number" name="agelimit" value="18" id=""><br><br>
-      <label for="">年齡限制:</label>
-      <input type="number" name="agelimit_below" value="" id=""><br><br>
+      <label for="">年齡上限:</label>
+      <input type="number" name="agelimit_below" value="120" id=""><br><br>
     </div>
     <div id="selector" class="vote-sub">
       <input type="radio" name="multiple" value="0" checked>
