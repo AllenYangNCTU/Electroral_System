@@ -163,7 +163,7 @@
       </table>
       <?php
       if (isset($_SESSION['user'])) {
-        $sqllog = "select count(user_id) as number from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}') ";
+        $sqllog = "select count(user_id) as number from `logs` where subject_id='{$_GET['id']}' and `user_id`=(select id from `users` where acc = '{$_SESSION['user']}')";
         $cannotpoll = $pdo->query($sqllog)->fetch(PDO::FETCH_ASSOC);
         $id = $_GET['id'];
         $sqlforbidden = "select * from subjects where id={$_GET['id']}";
@@ -172,9 +172,21 @@
         $end = strtotime($forbidden['end']);
         if ($forbidden['switch'] == 1 && (strtotime($forbidden['end']) - strtotime("now")) > 0) {
           if (!$cannotpoll['number']) {
+
+            $sql_age_limit = "select birthday from users where acc = '{$_SESSION["user"]}'";
+            $age_limit = $pdo->query($sql_age_limit)->fetch(PDO::FETCH_ASSOC);
+            $age_limit_str = strtotime($age_limit['birthday']);
+            if ((($today - $age_limit_str) / 86400 / 365) >= $forbidden['age_limit']) {
+
       ?>
-            <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
-          <?php } else { ?>
+              <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
+
+            <?php
+
+            } else {
+              print("<div style='text-align: center; margin:1rem;'>題目限制年齡為：{$forbidden['age_limit']} 歲，還不能投票喔</div>");
+            }
+          } else { ?>
             <!-- <button class="logbtn">無法投票</button> -->
             <div style="text-align: center; margin:1rem;">您已投過票</div>
             <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>

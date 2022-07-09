@@ -25,7 +25,9 @@ $opts = all('options', ['subject_id' => $id]);
       <label for="">開始時間:</label>
       <input type="date" name="start" value="<?= $subj['start']; ?>" id=""><br><br>
       <label for="">結束時間:</label>
-      <input type="date" name="end" value="<?= $subj['end']; ?>" id="">
+      <input type="date" name="end" value="<?= $subj['end']; ?>" id=""><br><br>
+      <label for="">年齡限制:</label>
+      <input type="number" name="age_limit" value="<?= $subj['age_limit']; ?>" id="">
       <input type="hidden" name="subject_id" value="<?= $subj['id']; ?>">
     </div>
     <div id="selector" class="vote-sub">

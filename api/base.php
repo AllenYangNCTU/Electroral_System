@@ -2,7 +2,7 @@
 session_start();
 date_default_timezone_set('Asia/Taipei');
 
-$dsn = "mysql:host=localhost;charset=utf8;dbname=holie_vote";
+$dsn = "mysql:host=localhost;charset=utf8;dbname=hejie_vote";
 $pdo = new PDO($dsn, 'root', 'root');
 
 // $dsn="mysql:host=localhost;charset=utf8;dbname=s1110222";
@@ -11,7 +11,7 @@ $pdo = new PDO($dsn, 'root', 'root');
 function pdo()
 {
 
-    $dsn = "mysql:host=localhost;charset=utf8;dbname=holie_vote";
+    $dsn = "mysql:host=localhost;charset=utf8;dbname=hejie_vote";
     return new PDO($dsn, 'root', 'root');
 
     // $dsn="mysql:host=localhost;charset=utf8;dbname=s1110222";
