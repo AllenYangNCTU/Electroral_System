@@ -27,6 +27,8 @@
       <input type="time" name="endtime" value="00:02:00.000" id=""><br><br>
       <label for="">年齡限制:</label>
       <input type="number" name="agelimit" value="18" id=""><br><br>
+      <label for="">年齡限制:</label>
+      <input type="number" name="agelimit_below" value="" id=""><br><br>
     </div>
     <div id="selector" class="vote-sub">
       <input type="radio" name="multiple" value="0" checked>

@@ -11,6 +11,7 @@ $add_subject = [
   'starttime' => $_POST['starttime'],
   'endtime' => $_POST['endtime'],
   'age_limit' => $_POST['agelimit'],
+  'age_limit_below' => $_POST['agelimit_below'],
 ];
 update_or_insert_contents_in_table('subjects', $add_subject);
 $id = find_something_in_table('subjects', ['subject' => $subject])['id'];

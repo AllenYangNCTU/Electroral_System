@@ -176,15 +176,20 @@
             $sql_age_limit = "select birthday from users where acc = '{$_SESSION["user"]}'";
             $age_limit = $pdo->query($sql_age_limit)->fetch(PDO::FETCH_ASSOC);
             $age_limit_str = strtotime($age_limit['birthday']);
-            if ((($today - $age_limit_str) / 86400 / 365) >= $forbidden['age_limit']) {
+
+
+
+            if ((($today - $age_limit_str) / 86400 / 365) >= $forbidden['age_limit'] && (($today - $age_limit_str) / 86400 / 365) <= $forbidden['age_limit_below']) {
 
       ?>
               <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
 
             <?php
 
-            } else {
+            } else if ((($today - $age_limit_str) / 86400 / 365) < $forbidden['age_limit']) {
               print("<div style='text-align: center; margin:1rem;'>題目限制年齡為：{$forbidden['age_limit']} 歲，還不能投票喔</div>");
+            } else if ((($today - $age_limit_str) / 86400 / 365) > $forbidden['age_limit_below']) {
+              print("<div style='text-align: center; margin:1rem;'>題目限制年齡為：{$forbidden['age_limit_below']} 歲以下，您的年齡不在投票範圍</div>");
             }
           } else { ?>
             <!-- <button class="logbtn">無法投票</button> -->

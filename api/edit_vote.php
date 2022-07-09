@@ -32,7 +32,7 @@ foreach ($_POST['option'] as $key => $opt) {
     update_or_insert_contents_in_table("options", $add_option);
   }
 }
-$sql = "update subjects set age_limit = '{$_POST['age_limit']}', start = '{$_POST['start']}', end = '{$_POST['end']}' where id = '{$_POST['subject_id']}'";
+$sql = "update subjects set age_limit_below = '{$_POST['age_limit_below']}', age_limit = '{$_POST['age_limit']}', start = '{$_POST['start']}', end = '{$_POST['end']}' where id = '{$_POST['subject_id']}'";
 $pdo->exec($sql);
 
 header_to('../back.php');
