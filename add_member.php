@@ -38,18 +38,27 @@ for ($i = 0; $i < strlen($pwd); $i++) {
         $hasNum = true;
     }
 }
+$today = date('now');
+$birthday = strtotime($_POST['birthday']);
 if ($acc['number'] == 0) {
     if ($_POST['pw'] == $_POST['re_pw']) {
         if (strlen($pwd) > 8 && strlen($pwd) < 16) {
             if ($hasNum  && $hasUpper  && $hasLower) {
-                $pw = md5($_POST['pw']);
-                $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`addr`,`email`,`passnote`) 
-                    values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['addr']}','{$_POST['email']}','{$_POST['passnote']}');";
-                $pdo->exec($sql);
-                header_to("./login.php");
+                if ($birthday < $today) {
+                    $pw = md5($_POST['pw']);
+                    $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`addr`,`email`,`passnote`) 
+                        values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['addr']}','{$_POST['email']}','{$_POST['passnote']}');";
+                    $pdo->exec($sql);
+                    header_to("./login.php");
+                } else {
+                    print("<script type='text/javascript'>alert('生日不能大於今日');</script>");
+?>
+                    <br><a href="register.php">重新註冊</a>
+                <?php
+                }
             } else {
                 print("<script type='text/javascript'>alert('密碼請包含大寫、小寫、數字');</script>");
-?>
+                ?>
                 <br><a href="register.php">重新註冊</a>
             <?php
             }
