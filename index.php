@@ -8,8 +8,18 @@ include_once "./api/base.php";
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>問卷系統</title>
+  <title>Electroral System</title>
   <link rel="stylesheet" href="./css/index.css">
+  <style>
+    body {
+      background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
+    }
+
+    .container {
+      background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
+
+    }
+  </style>
 </head>
 
 <body>

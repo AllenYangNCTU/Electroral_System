@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Member Management Center</title>
     <link rel="stylesheet" href="./css/back.css">
     <style>
         .subject_container_member {
@@ -34,7 +34,7 @@
         }
 
         .subject_li {
-            width: calc(100% / 10);
+            width: calc(100% / 9);
             display: inline-block;
             text-align: center;
             font-weight: bold;
@@ -42,7 +42,7 @@
         }
 
         .subject_li_title {
-            width: calc(100% / 10);
+            width: calc(100% / 9);
             display: inline-block;
             text-align: left;
             font-weight: bold;
@@ -102,12 +102,11 @@
                 <div>Acccount：</div>
                 <div>Name：</div>
                 <div>Birthday：</div>
-                <div>Address：</div>
                 <div>E-mail：</div>
                 <div></div>
-                <div>會員等級：</div>
-                <div>刪除使用者：</div>
-                <div>權限調整：</div>
+                <div>membership level：</div>
+                <div>Delete user：</div>
+                <div>Modify permissions：</div>
             </li>
             <?php
             include_once("./api/base.php");
@@ -120,10 +119,10 @@
                 <div class="subject_li"> <?php print($result['acc']); ?></div>
                 <div class="subject_li"> <?php print($result['name']); ?></div>
                 <div class="subject_li"> <?php print($result['birthday']); ?></div>
-                <div class="subject_li"> <?php print($result['addr']); ?></div>
+
                 <div style="text-align:left;" class="subject_li"> <?php print($result['email']); ?></div>
                 <div class="subject_li"></div>
-                <div class="subject_li"> <?php print((($result['admin']) ? "管理員" : "一般會員")); ?></div>
+                <div class="subject_li"> <?php print((($result['admin']) ? "admin" : "member")); ?></div>
 
                 <?php
                 if (isset($_GET['do'])) {

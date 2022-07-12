@@ -51,28 +51,28 @@ if ($_POST['pwd'] == $_POST['re_pwd']) {
             $pdo->exec($sql);
             print("密碼重設成功");
 ?>
-            <br><a href="../login.php">返回登入</a>
+            <br><a href="../login.php">Back to login</a>
         <?php
         } else {
-            print("<script type='text/javascript'>alert('密碼請包含大寫、小寫、數字');</script>");
+            print("<script type='text/javascript'>alert('Passwords have to contain at least one uppercase letter, lowercase letter and number');</script>");
         ?>
-            <br><a href="../forgot.php">請重新輸入帳號、電子郵件</a>
+            <br><a href="../forgot.php">Back to Forgot Passords</a>
         <?php
         }
     } else if (strlen($pwd) < 8) {
-        print("<script type='text/javascript'>alert('密碼長度不能小於8');</script>");
+        print("<script type='text/javascript'>alert('The length of passwords cannot be less than 8 characters');</script>");
         ?>
-        <br><a href="../forgot.php">請重新輸入帳號、電子郵件</a>
+        <br><a href="../forgot.php">Back to Forgot Passords</a>
     <?php
     } else {
-        print("<script type='text/javascript'>alert('密碼長度不能大於16');</script>");
+        print("<script type='text/javascript'>alert('The length of passwords cannot be greater than 16 chracters');</script>");
     ?>
-        <br><a href="../forgot.php">請重新輸入帳號、電子郵件</a>
+        <br><a href="../forgot.php">Back to Forgot Passords</a>
     <?php
     }
 } else {
-    print("<script type='text/javascript'>alert('密碼兩次不相同');</script>");
+    print("<script type='text/javascript'>alert('The password is inconsistent with the confirmation password you entered');</script>");
     ?>
-    <br><a href="../forgot.php">請重新輸入帳號、電子郵件</a>
+    <br><a href="../forgot.php">Back to Forgot Passords</a>
 <?php
 }

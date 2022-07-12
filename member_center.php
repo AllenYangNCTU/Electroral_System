@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>會員中心</title>
+  <title>Member Center</title>
   <link rel="stylesheet" href="./css/index.css">
   <style>
     .container {
@@ -38,7 +38,7 @@
       width: 40%;
       height: 8vh;
       border: none;
-      background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
+      background-image: linear-gradient(to bottom, #FCFF00 0%, #FFA8A8 100%);
       background-size: 200%;
       outline: none;
       cursor: pointer;
@@ -80,78 +80,53 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
   ?>
   <?php include "./layout/front_nav.php"; ?>
   <div class="container">
-    <h1>會員中心</h1>
+    <h1>Member Center</h1>
 
     <?php
     if (!$user['admin']) {
     ?>
-      <a class="remove" href="remove_acc.php?id=<?= $user['id']; ?>">刪除帳號</a>
+      <a class="remove" href="remove_acc.php?id=<?= $user['id']; ?>">Delete Account</a>
     <?php
     }
     ?>
-    <h2>歡迎~<?= $_SESSION['user']; ?>~</h2>
+    <h2>Welcome~<?= $_SESSION['user']; ?>~</h2>
     <div>
-      <span>序號：</span>
-      <?= $user['id']; ?>
-    </div>
-    <div>
-      <span>帳號：</span>
+      <span>Account：</span>
       <?= $user['acc']; ?>
     </div>
     <div class="inputBox">
-      <span>密碼：<a href="./back/update_pwd.php?account=<?= $user['acc']; ?>">修改密碼</a>
+      <span>Passwords：<a href="./back/update_pwd.php?account=<?= $user['acc']; ?>">Change Passwords</a>
       </span>
     </div>
     <div>
-      <span>姓名：</span>
+      <span>Name：</span>
       <?= $user['name']; ?>
     </div>
     <div>
-      <span>生日：</span>
+      <span>Birthday：</span>
       <?= $user['birthday']; ?>
-    </div>
-    <div>
-      <span>地址：</span>
-      <?= $user['addr']; ?>
     </div>
     <div>
       <span>e-mail：</span>
       <?= $user['email']; ?>
     </div>
     <div>
-      <span>密碼提示：</span>
-    </div>
-    <div>
-      <span>等級：</span>
+      <span>Rank：</span>
       <?php if ($user['admin'] == 1) {
-        print("管理員");
+        print("Admin");
       } else {
-        print("一般會員");
+        print("Member");
       }
       ?>
     </div>
 
     <form action="edit.php" method="post">
       <input type="hidden" name="id" value="<?= $user['id']; ?>">
-      <input type="submit" class="logbtn" value="編輯">
+      <input type="submit" class="logbtn" value="Edit">
     </form>
 
   </div>
   <?php include "./layout/footer.php"; ?>
-  <script>
-    const password = document.getElementById('password')
-    const toggle = document.getElementById('toggle')
-
-    function showHide() {
-      if (password.type === 'password') {
-        password.setAttribute('type', 'text')
-        toggle.classList.add('hide')
-      } else {
-        password.setAttribute('type', 'password')
-        toggle.classList.remove('hide')
-      }
-    }
-  </script>
 </body>
 
 </html>

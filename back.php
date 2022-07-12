@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>投票管理中心</title>
+  <title>administrative center</title>
   <link rel="stylesheet" href="./css/back.css">
   <style>
     .subject_container_open {
@@ -145,6 +145,11 @@
       background: #504d78;
       color: #fff;
     }
+
+    .container {
+      background-image: linear-gradient(45deg, #F0FF00 0%, #58CFFB 100%);
+      /* background-image: none; */
+    }
   </style>
 </head>
 
@@ -154,7 +159,7 @@
     <?php include "./layout/back_nav.php"; ?>
   </nav>
   <div class="container">
-    <h1>投票管理中心</h1>
+    <h1>Administrative Center</h1>
 
     <?php
     if (isset($_GET['do'])) {
@@ -168,7 +173,7 @@
       <form style="margin-left:5rem;" action="./index.php?filter=0<?= $p; ?><?= $querystr; ?>" method="post">
         <input type="text" name="search_string" id="" placeholder="search">
         <input type="submit" value="送出">
-      </form>
+      </form><br>
       <?php
       if (isset($_POST['search_string'])) {
 
@@ -176,17 +181,17 @@
         $search = $pdo->query($sql_search)->fetchAll(PDO::FETCH_ASSOC);
       }
       ?>
-      <button style="margin-left:5rem;" class=btn onclick="location.href='?do=add_vote'">新增投票</button>
+      <button style="margin-left:5rem;" class=btn onclick="location.href='?do=add_vote'">Add Topic</button>
       <div>
         <ul>
           <li class="list-header">
-            <div>類別：</div>
-            <div>投票主題：</div>
-            <div>單/複選題：</div>
-            <div>投票期間：</div>
-            <div>剩餘時間：</div>
-            <div>投票人數：</div>
-            <div>操作：</div>
+            <div>Classification</div>
+            <div>Topic</div>
+            <div>Multiple Choice</div>
+            <div>Begining and end</div>
+            <div>Time Remaining</div>
+            <div>Number of Voters</div>
+            <div>Operation</div>
           </li>
           <?php
           if (isset($_POST['search_string'])) {
@@ -205,9 +210,9 @@
             echo "<div class='subject_li'>{$typename['name']}</div>";
             echo "<div class='subject_li'>{$subject['subject']}</div>";
             if ($subject['multiple'] == 0) {
-              echo "<div class='subject_li'>單選題</div>";
+              echo "<div class='subject_li'>Multi-Choice</div>";
             } else {
-              echo "<div class='subject_li'>複選題</div>";
+              echo "<div class='subject_li'>Multi-Answers</div>";
             }
             echo "<div class='subject_li' style='font-size: 16px;'> ";
             echo $subject['start'] . " " . $subject['starttime'] . "~" . "<br>" . $subject['end'] . " " . $subject['starttime'];
@@ -220,22 +225,22 @@
               $remainhours = ceil((($end - $today) % 86400) / 3600);
               $remainminutes = ceil((($end - $today) % 3600) / 60);
               $remainseconds = ceil(($end - $today) % 60);
-              echo "倒數" . $remainday . "天" . $remainhours . "小時" . $remainminutes . "分" . $remainseconds . "秒";
+              echo  $remainday . " D " . $remainhours . " H " . $remainminutes . " M " . $remainseconds . " S";
             } else {
-              echo "<span style='color:grey;'>投票已截止</span>";
+              echo "<span style='color:grey;'>cut-off vote</span>";
             }
             echo "</div>";
             echo "<div class='subject_li'>{$subject['total']}</div>";
             echo "<div class='subject_li'>";
-            echo "<a class='edit' href='?do=edit&id={$subject['id']}'>編輯</a>";
-            echo "<a class='del' href='?do=del&id={$subject['id']}'>刪除</a>";
-            echo "<a class='chmod' href='./chmod.php?id={$subject['id']}'>開關</a>";
+            echo "<a class='edit' href='?do=edit&id={$subject['id']}'>edit</a>";
+            echo "<a class='del' href='?do=del&id={$subject['id']}'>delete</a>";
+            echo "<a class='chmod' href='./chmod.php?id={$subject['id']}'>on/off</a>";
             if ($subject['secret']) {
               $secret_ballot_class = "secret_ballot_secret";
             } else {
               $secret_ballot_class = "secret_ballot_open";
             }
-            echo "<a class=$secret_ballot_class href='./secret_ballot.php?id={$subject['id']}'>記名</a>";
+            echo "<a class=$secret_ballot_class href='./secret_ballot.php?id={$subject['id']}'>open/secret</a>";
             echo "</div>";
             echo "</div>";
           }

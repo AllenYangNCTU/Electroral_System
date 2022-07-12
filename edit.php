@@ -29,7 +29,7 @@
     <?php include "./layout/front_nav.php"; ?>
   </nav>
   <div class="container">
-    <h1>編輯會員</h1>
+    <h1>Edit Member Profile</h1>
     <?php
     include_once "./api/base.php";
     $sql = "SELECT * FROM users WHERE id='{$_POST['id']}'";
@@ -38,37 +38,31 @@
     <form action="save_member.php" method="post">
       <table>
         <tr>
-          <td>帳號</td>
+          <td>Account</td>
           <td><?= $user['acc']; ?></td>
         </tr>
         <tr>
-          <td>名稱</td>
+          <td>Name</td>
           <td><input type="text" name="name" value="<?= $user['name']; ?>"></td>
         </tr>
         <tr>
-          <td>生日</td>
+          <td>Birthday</td>
           <td><input type="date" name="birthday" value="<?= $user['birthday']; ?>"></td>
         </tr>
         <tr>
-          <td>住址</td>
-          <td><input type="text" name="addr" value="<?= $user['addr']; ?>"></td>
-        </tr>
-        <tr>
-          <td>email</td>
+          <td>Email</td>
           <td><input type="email" name="email" value="<?= $user['email']; ?>"></td>
-        </tr>
-        <tr>
-          <td>密碼提示</td>
-          <td><input type="text" name="passnote" value="<?= $user['passnote']; ?>"></td>
         </tr>
       </table>
       <div>
         <input type="hidden" name="id" value="<?= $_POST['id']; ?>">
-        <input type="submit" class="logbtn" value="送出">
+        <input type="submit" class="logbtn" value="Submit">
       </div>
     </form>
   </div>
-  <?php include "./layout/footer.php"; ?>
+  <?php
+  // include "./layout/footer.php"; 
+  ?>
 </body>
 
 </html>

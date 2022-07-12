@@ -38,50 +38,50 @@ for ($i = 0; $i < strlen($pwd); $i++) {
         $hasNum = true;
     }
 }
-$today = date('now');
+$today = strtotime('now');
 $birthday = strtotime($_POST['birthday']);
 if ($acc['number'] == 0) {
     if ($_POST['pw'] == $_POST['re_pw']) {
-        if (strlen($pwd) > 8 && strlen($pwd) < 16) {
+        if (strlen($pwd) >= 8 && strlen($pwd) <= 16) {
             if ($hasNum  && $hasUpper  && $hasLower) {
                 if ($birthday < $today) {
                     $pw = md5($_POST['pw']);
-                    $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`addr`,`email`,`passnote`) 
-                        values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['addr']}','{$_POST['email']}','{$_POST['passnote']}');";
+                    $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`email`) 
+                        values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['email']}');";
                     $pdo->exec($sql);
                     header_to("./login.php");
-                } else {
-                    print("<script type='text/javascript'>alert('生日不能大於今日');</script>");
+                } else if ($birthday > $today) {
+                    print("<script type='text/javascript'>alert('Birthday cannot be later than today');</script>");
 ?>
-                    <br><a href="register.php">重新註冊</a>
+                    <br><a href="register.php">Back to Register Page</a>
                 <?php
                 }
             } else {
-                print("<script type='text/javascript'>alert('密碼請包含大寫、小寫、數字');</script>");
+                print("<script type='text/javascript'>alert('Passwords have to contain at least one uppercase letter, lowercase letter and number');</script>");
                 ?>
-                <br><a href="register.php">重新註冊</a>
+                <br><a href="register.php">Back to Register Page</a>
             <?php
             }
         } else if (strlen($pwd) < 8) {
-            print("<script type='text/javascript'>alert('密碼長度不能小於8');</script>");
+            print("<script type='text/javascript'>alert('The length of passwords cannot be less than 8 characters.');</script>");
             ?>
-            <br><a href="register.php">重新註冊</a>
+            <br><a href="register.php">Back to Register Page</a>
         <?php
         } else {
-            print("<script type='text/javascript'>alert('密碼長度不能大於16');</script>");
+            print("<script type='text/javascript'>alert('The length of passwords cannot be greater than 16 chracters');</script>");
         ?>
-            <br><a href="register.php">重新註冊</a>
+            <br><a href="register.php">Back to Register Page</a>
         <?php
         }
     } else {
-        print("<script type='text/javascript'>alert('密碼兩次不相同');</script>");
+        print("<script type='text/javascript'>alert('The password is inconsistent with the confirmation password you entered');</script>");
         ?>
-        <br><a href="register.php">重新註冊</a>
+        <br><a href="register.php">Back to Register Pag</a>
     <?php
     }
 } else {
-    print("<script type='text/javascript'>alert('此使用者名稱已被註冊');</script>");
+    print("<script type='text/javascript'>alert('Account had been registered');</script>");
     ?>
-    <br><a href="register.php">重新註冊</a>
+    <br><a href="register.php">Back to Register Pag</a>
 <?php
 }

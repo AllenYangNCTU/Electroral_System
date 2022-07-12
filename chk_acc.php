@@ -25,7 +25,6 @@
     <?php include "./layout/header.php"; ?>
   </nav>
   <div class="container">
-    <h1>密碼提示</h1>
     <?php
     include "./api/base.php";
     $acc = $_POST['acc'];
@@ -36,14 +35,14 @@
     if ($user['email'] == $email) {
       header_to("./back/resetpwd.php?do=resetpwd&id=$id&acc=$acc");
     } else if (empty($user)) {
-      echo "查無此帳號";
+      echo "Account not found";
     ?>
-      <br><br><a href="forgot.php">返回</a><br>
+      <br><br><a href="forgot.php">Back</a><br>
     <?php
     } else if ($user['email'] != $email) {
-      print("電子郵件錯誤");
+      print("Email error!");
     ?>
-      <br><br><a href="forgot.php">返回</a><br>
+      <br><br><a href="forgot.php">Back</a><br>
     <?php
     }
     ?>

@@ -11,9 +11,10 @@
       display: block;
       width: 1260px;
       height: 300px;
-      background-color: greenyellow;
+      /* background-color: greenyellow; */
       margin: 0;
-      margin-left: 6%;
+      /* margin-left: ; */
+      margin-left: 8%;
       margin-top: 2vh;
       border-radius: 15px;
       z-index: 5;
@@ -27,6 +28,26 @@
       display: block;
       text-decoration: none;
       font-size: 17px;
+      margin-left: -45rem;
+    }
+
+    /* nav {
+      height: 1rem;
+      display: flex;
+      justify-content: center;
+      justify-content: space-between;
+      width: 20rem;
+      margin-left: 5rem;
+      margin-top: 1rem;
+    } */
+
+    body {
+      background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
+    }
+
+    .container {
+      background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
+
     }
   </style>
   <link rel="stylesheet" href="../css/index.css">
@@ -40,31 +61,31 @@
     if ($admin['admin'] == 1) {
   ?>
       <nav>
-        <a href="index.php">回首頁</a>
-        <a href="back.php">管理投票</a>
-        <a href="logout.php">登出</a>
-        <a href="member_center.php">會員中心</a>
-        <a href="member_managements.php">會員列表</a>
+        <a href="index.php">Main Page</a>
+        <a href="back.php">Administrative Center</a>
+        <a href="logout.php">Log Out</a>
+        <a href="member_center.php">Member Center</a>
+        <a href="member_managements.php">Member Management Center</a>
       </nav>
     <?php
     } else {
     ?>
       <nav>
-        <a href="index.php">回首頁</a>
-        <a href="logout.php">登出</a>
-        <a href="member_center.php">會員中心</a>
+        <a href="index.php">Main Page</a>
+        <a href="logout.php">Log Out</a>
+        <a href="member_center.php">Member Center</a>
       </nav>
     <?php
     }
   } else {
     ?>
     <nav>
-      <a href="login.php">會員登入</a>
-      <a href="register.php">還沒有會員？註冊</a>
+      <a href="login.php">Member Login</a>
+      <a href="register.php">Member Register</a>
     </nav>
     <div class="slideshow">
       <!-- <p>123</p> -->
-      <p style="text-align:center;font-size:20px;">廣告牆</p>
+      <!-- <p style="text-align:center;font-size:20px;">廣告牆</p> -->
       <img src="../img/header.png" alt="">
     </div>
   <?php

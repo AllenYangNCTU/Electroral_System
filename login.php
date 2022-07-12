@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>會員登入</title>
+  <title>Login page</title>
   <link rel="stylesheet" href="./css/login.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <style>
@@ -51,7 +51,7 @@
       width: 50%;
       height: 8vh;
       border: none;
-      background-image: linear-gradient(to top, #fed6e3 0%, #a8edea 100%, #fed6e3 0%, #a8edea 100%, #fed6e3 0%);
+      background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
       background-size: 200%;
       outline: none;
       cursor: pointer;
@@ -73,6 +73,7 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+      background: rgb(244, 239, 163);
     }
   </style>
 </head>
@@ -83,7 +84,7 @@
   </nav>
   <div class="container">
     <form action="chklogin.php" method="post">
-      <h1>帳號登入</h1>
+      <h1>Member Login</h1>
       <?php
       if (isset($_GET['error'])) { //如果錯誤的話顯示帳密錯誤訊息
       ?>
@@ -91,15 +92,11 @@
       <?php
       }
       ?>
-      <div class="txtb">
-        <input type="text" name="acc">
-        <span data-placeholder="帳號"></span>
-      </div>
-      <div class="txtb">
-        <input type="password" name="pw">
-        <span data-placeholder="密碼"></span>
-      </div>
-      <button onclick="location.refresh()" class='reload'>重新產生驗證碼</button>
+      <label for="">Account:</label><br>
+      <input type="text" name="acc"><br><br><br>
+      <label for="">Passwords:</label><br>
+      <input type="password" name="pw"><br>
+      <button onclick="location.refresh()" class='reload'>Regenerate verification code</button>
       <?php
       //使用亂數來產生驗證碼長度
       $length = rand(4, 8);
@@ -259,30 +256,19 @@
       <div style="width:500px;margin:auto;">
         <img src="./upload/text.jpg" alt="" style="border:2px solid black">
       </div>
-      <div class="txtb">
-        <input type="text" name="verification">
-        <span data-placeholder="請輸入驗證碼"></span>
-      </div>
+      <label for="">Verification code:</label><br>
+      <input type="text" name="verification"><br>
       <div>
-        <input type="submit" class="logbtn" value="登入">
+        <input type="submit" class="logbtn" value="Login">
       </div>
       <div class="bottom-text">
-        <a href="register.php">尚未註冊?</a>
-        <a href="forgot.php">忘記密碼?</a>
+        <a href="register.php">Register?</a>
+        <a href="forgot.php">Forgot Passwords?</a>
       </div>
       <input type="hidden" name="verification_string" value="<?= $gstr; ?>">
     </form>
   </div>
   <?php include "./layout/footer.php"; ?>
-  <script type="text/javascript">
-    $(".txtb input").on("focus", function() {
-      $(this).addClass("focus");
-    });
-    $(".txtb input").on("blur", function() {
-      if ($(this).val() == "")
-        $(this).removeClass("focus");
-    });
-  </script>
 
 </body>
 

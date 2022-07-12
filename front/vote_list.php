@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>投票列表</title>
+  <title>VOTE LIST</title>
   <style>
     .subject_container {
       display: flex;
@@ -51,6 +51,19 @@
       transition: all 0.5s ease-out;
       margin-top: 15px;
     }
+
+    div {
+      /* background-color: #696AAD; */
+      color: #696AAD;
+    }
+
+    h1 {
+      color: #696AAD;
+    }
+
+    .list-header div {
+      background-color: #696AAD;
+    }
   </style>
 </head>
 
@@ -73,11 +86,11 @@
   }
 
   ?>
-  <h1>投票列表</h1>
+  <h1>VOTE LIST</h1>
   <div id="list">
     <form action="./index.php?filter=0<?= $p; ?><?= $querystr; ?>" method="post">
       <input type="text" name="search_string" id="" placeholder="search">
-      <input type="submit" value="送出">
+      <input type="submit" value="submit">
     </form>
     <?php
     if (isset($_POST['search_string'])) {
@@ -86,12 +99,12 @@
       $search = $pdo->query($sql_search)->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
-    <label for="types">分類</label>
+    <label for="types">Classification</label>
 
 
     <select name="types" id="types" onchange="location.href=`?filter=${this.value}<?= $p; ?><?= $querystr; ?>`">
 
-      <option value="0">全部</option>
+      <option value="0">All</option>
       <?php
       $types = show_table_contents("types");
       foreach ($types as $type) {
@@ -108,43 +121,43 @@
   <div>
     <ul class="list">
       <li class="list-header">
-        <div>類別：</div>
-        <div>投票主題：</div>
+        <div>Classification：</div>
+        <div>Topic：</div>
         <?php
         if (isset($_GET['type']) && $_GET['type'] == 'asc') {
         ?>
-          <div><a href="?order=multiple&type=desc<?= $p; ?><?= $queryfilter ?>">單/複選題：</a></div>
+          <div><a href="?order=multiple&type=desc<?= $p; ?><?= $queryfilter ?>">Multiple choice：</a></div>
         <?php
         } else {
         ?>
-          <div><a href="?order=multiple&type=asc<?= $p; ?><?= $queryfilter ?>">單/複選題：</a></div>
+          <div><a href="?order=multiple&type=asc<?= $p; ?><?= $queryfilter ?>">Multiple choice：</a></div>
         <?php
         }
         if (isset($_GET['type']) && $_GET['type'] == 'asc') {
         ?>
-          <div><a href="?order=end&type=desc<?= $p; ?><?= $queryfilter ?>">投票期間：</a></div>
+          <div><a href="?order=end&type=desc<?= $p; ?><?= $queryfilter ?>">Beginning and end：</a></div>
         <?php
         } else {
         ?>
-          <div><a href="?order=end&type=asc<?= $p; ?><?= $queryfilter ?>">投票期間：</a></div>
+          <div><a href="?order=end&type=asc<?= $p; ?><?= $queryfilter ?>">Beginning and end：</a></div>
         <?php
         }
         if (isset($_GET['type']) && $_GET['type'] == 'asc') {
         ?>
-          <div><a href="?order=remain&type=desc<?= $p; ?><?= $queryfilter ?>">剩餘時間：</a></div>
+          <div><a href="?order=remain&type=desc<?= $p; ?><?= $queryfilter ?>">Time remaining：</a></div>
         <?php
         } else {
         ?>
-          <div><a href="?order=remain&type=asc<?= $p; ?><?= $queryfilter ?>">剩餘時間：</a></div>
+          <div><a href="?order=remain&type=asc<?= $p; ?><?= $queryfilter ?>">Time remaining：</a></div>
         <?php
         }
         if (isset($_GET['type']) && $_GET['type'] == 'asc') {
         ?>
-          <div><a href='?order=total&type=desc<?= $p; ?><?= $queryfilter ?>'>投票人數：</a></div>
+          <div><a href='?order=total&type=desc<?= $p; ?><?= $queryfilter ?>'>Number of voters：</a></div>
         <?php
         } else {
         ?>
-          <div><a href='?order=total&type=asc<?= $p; ?><?= $queryfilter ?>'>投票人數：</a></div>
+          <div><a href='?order=total&type=asc<?= $p; ?><?= $queryfilter ?>'>Number of voters：</a></div>
         <?php
         }
         ?>
@@ -194,9 +207,9 @@
         echo "<div class='subject_li'>{$typename['name']}</div>";
         echo "<div class='subject_li_title'>{$subject['subject']}</div>";
         if ($subject['multiple'] == 0) {
-          echo "<div class='subject_li'>單選題</div>";
+          echo "<div  class='subject_li'>Multiple-Choice</div>";
         } else {
-          echo "<div class='subject_li'>複選題</div>";
+          echo "<div class='subject_li'>Multiple-Answers</div>";
         }
         echo "<div class='subject_li' style='font-size: 16px;'> ";
         echo $subject['start'] . " " . $subject['starttime'] . "~" . "<br>" . $subject['end'] . " " . $subject['starttime'];
@@ -209,11 +222,11 @@
           $remainhours = ceil((($end - $today) % 86400) / 3600);
           $remainminutes = ceil((($end - $today) % 3600) / 60);
           $remainseconds = ceil(($end - $today) % 60);
-          echo "倒數" . $remainday . "天" . $remainhours . "小時" . $remainminutes . "分" . $remainseconds . "秒";
+          echo  $remainday . " Days " . $remainhours . " H " . $remainminutes . " M " . $remainseconds . " S";
         } else if ((($end - $today) > 0) && $subject['switch'] == 0) {
-          echo "<span style='color:grey;'>投票暫時關閉</span>";
+          echo "<span style='color:grey;'>Poll had been temporarily closed</span>";
         } else {
-          echo "<span style='color:grey;'>投票已結束</span>";
+          echo "<span style='color:grey;'>Cut-off voting</span>";
         }
         echo "</div>";
         echo "<div class='subject_li'>{$subject['total']}</div>";

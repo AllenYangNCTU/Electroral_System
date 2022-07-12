@@ -15,7 +15,11 @@
     .container {
       width: 100vh;
       overflow: scroll;
+
+      background-image: linear-gradient(45deg, #F0FF00 0%, #58CFFB 100%);
+
     }
+
 
     .logbtn {
       width: 40%;
@@ -91,16 +95,16 @@
     $member_had_voted = $pdo->query($sqlmember_had_voted)->fetchAll(PDO::FETCH_ASSOC);
     $secret = "";
     if ($subject['secret']) {
-      $secret = "";
+      $secret = "Open ";
     } else {
-      $secret = "不";
+      $secret = "Secret ";
     }
     ?>
     <h1 class="text-center"><?= $subject['subject'];
-                            print("(" . $secret . "記名投票)"); ?></h1>
+                            print("(" . $secret . "Ballot)"); ?></h1>
 
     <div style="width: 600px;margin:auto">
-      <div style="text-align: center; margin:1rem;">總投票數: <?= $subject['total']; ?></div>
+      <div style="text-align: center; margin:1rem;">Number of Voters: <?= $subject['total']; ?></div>
       <?php
       $member_total_array = [];
       foreach ($member_had_voted as $member) {
@@ -109,21 +113,21 @@
       $member_total_string = implode(', ', $member_total_array);
       if ($subject['secret']) {
       ?>
-        <div style="text-align: center; margin:1rem;">已投過的帳號:</div>
+        <div style="text-align: center; margin:1rem;">Accounts that had voted :</div>
         <div style="text-align: center; margin:1rem;"><?php print($member_total_string); ?></div>
       <?php
       }
       ?>
       <table class="result-table">
         <tr>
-          <td>選項</td>
-          <td>投票數</td>
-          <td>比例</td>
+          <td>Option</td>
+          <td>Total</td>
+          <td>Ratio</td>
           <?php
           if ($subject['secret']) {
           ?>
-            <td>帳號</td><?php
-                      } ?>
+            <td>Account</td><?php
+                          } ?>
         </tr>
         <?php
         $sum = 0;
@@ -138,7 +142,7 @@
             <td><?= $opt['option']; ?></td>
             <td><?= $opt['total']; ?></td>
             <td style="text-align:left">
-              <div style="display:inline-block;height:24px;background-image: linear-gradient(to left, #fed6e3 0%, #a8edea 100%);width:<?= 300 * $rate; ?>px;"></div>
+              <div style="display:inline-block;height:24px;background-image: linear-gradient(to left, #FCFF00 0%, #FFA8A8 <?= 100 * $rate; ?>%);;width:<?= 300 * $rate; ?>px;"></div>
               <?= number_format($rate * 100) . "%"; ?>
             </td>
             <?php
@@ -176,40 +180,33 @@
             $sql_age_limit = "select birthday from users where acc = '{$_SESSION["user"]}'";
             $age_limit = $pdo->query($sql_age_limit)->fetch(PDO::FETCH_ASSOC);
             $age_limit_str = strtotime($age_limit['birthday']);
-
-
-
             if ((($today - $age_limit_str) / 86400 / 365) >= $forbidden['age_limit'] && (($today - $age_limit_str) / 86400 / 365) <= $forbidden['age_limit_below']) {
-
       ?>
-              <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">我要投票</button>
-
+              <button type="submit" class="logbtn" onclick="location.href='?do=vote&id=<?= $_GET['id']; ?>'">Vote This Topic</button>
             <?php
-
             } else if ((($today - $age_limit_str) / 86400 / 365) < $forbidden['age_limit']) {
-              print("<div style='text-align: center; margin:1rem;'>題目限制年齡為：{$forbidden['age_limit']} 歲，還不能投票喔</div>");
+              print("<div style='text-align: center; margin:1rem;'> You have to be over {$forbidden['age_limit']} years old to vote this topic!</div>");
             } else if ((($today - $age_limit_str) / 86400 / 365) > $forbidden['age_limit_below']) {
-              print("<div style='text-align: center; margin:1rem;'>題目限制年齡為：{$forbidden['age_limit_below']} 歲以下，您的年齡不在投票範圍</div>");
+              print("<div style='text-align: center; margin:1rem;'> You have to be under {$forbidden['age_limit_below']} years old to vote this topic!</div>");
             }
           } else { ?>
-            <!-- <button class="logbtn">無法投票</button> -->
-            <div style="text-align: center; margin:1rem;">您已投過票</div>
-            <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">重新投票</button>
+            <div style="text-align: center; margin:1rem;">You had voted this topic.</div>
+            <button class="logbtn" onclick="location.href='./front/resetpolling.php?id=<?= $id; ?>'">Reset your vote, and vote this topic again</button>
         <?php
           }
         } else if ($forbidden['switch'] == 1 && (strtotime($forbidden['end']) - strtotime("now")) <= 0) {
-          print("<div style='text-align: center; margin:1rem;'>投票時間已經截止，如有疑問請聯絡管理員</div>");
+          print("<div style='text-align: center; margin:1rem;'>Cut-off voting! If you have any question, please contact your administrator.</div>");
         } else if ($forbidden['switch'] == 0 && (strtotime($forbidden['end']) - strtotime("now")) > 0) {
-          print("<div style='text-align: center; margin:1rem;'>投票已被暫時關閉，如有疑問請聯絡管理員</div>");
+          print("<div style='text-align: center; margin:1rem;'>This topic had been temporarily closed. If you have any question, please contact your administrator.</div>");
         } else {
-          print("<div style='text-align: center; margin:1rem;'>投票已被暫時關閉，且投票時間已經截止，如有疑問請聯絡管理員</div>");
+          print("<div style='text-align: center; margin:1rem;'>This topic had closed. If you have any question, please contact your administrator.</div>");
         }
         ?>
       <?php
       } else {
       ?>
         <div>
-          <a href="login.php"><input type="submit" class="logbtn" value="登入"></a>
+          <a href="login.php"><input type="submit" class="logbtn" value="Log in"></a>
         </div>
       <?php
       }

@@ -26,6 +26,6 @@ $opts = show_table_contents('options', ['subject_id' => $_GET['id']]);
   }
   ?>
   <div>
-    <input type="submit" class="logbtn" value="投票">
+    <input type="submit" class="logbtn" value="Vote">
   </div>
 </form>

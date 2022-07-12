@@ -56,37 +56,37 @@ if (md5($_POST['oldpwd']) == $md5pwd['pw']) {
             SET    `pw`= '{$newpwd}'
             WHERE  `acc`='{$_POST['name']}'";
                 $pdo->exec($sql);
-                print("密碼修改成功");
+                print("Passwords have been sucessfully updated");
 ?>
-                <a href="../login.php">重新登入</a>
+                <a href="../login.php">Back to login</a>
             <?php
             } else {
-                print("<script type='text/javascript'>alert('密碼請包含大寫、小寫、數字');</script>");
+                print("<script type='text/javascript'>alert('Passwords have to contain at least one uppercase letter, lowercase letter and number');</script>");
             ?>
-                <a href="../member_center.php">返回</a>
+                <a href="../member_center.php">Back to login</a>
             <?php
             }
         } else if (strlen($pwd) < 8) {
-            print("<script type='text/javascript'>alert('密碼長度不能小於8');</script>");
+            print("<script type='text/javascript'>alert('The length of passwords cannot be less than 8 characters.');</script>");
             ?>
-            <a href="../member_center.php">返回</a>
+            <a href="../member_center.php">Back to login</a>
         <?php
         } else {
-            print("<script type='text/javascript'>alert('密碼長度不能大於16');</script>");
+            print("<script type='text/javascript'>alert('The length of passwords cannot be greater than 16 chracters');</script>");
         ?>
-            <a href="../member_center.php">返回</a>
+            <a href="../member_center.php">Back to login</a>
         <?php
         }
     } else {
-        print("<script type='text/javascript'>alert('密碼兩次不相同');</script>");
+        print("<script type='text/javascript'>alert('The password is inconsistent with the confirmation password you entered');</script>");
         ?>
-        <a href="../member_center.php">返回</a>
+        <a href="../member_center.php">Back to login</a>
     <?php
     }
 } else {
-    print("<script type='text/javascript'>alert('舊密碼錯誤');</script>");
+    print("<script type='text/javascript'>alert('Old passwords do not match');</script>");
     ?>
-    <a href="../member_center.php">返回</a>
+    <a href="../member_center.php">Back to login</a>
 <?php
 }
 
