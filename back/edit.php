@@ -23,10 +23,14 @@ $opts = all('options', ['subject_id' => $id]);
       <input type="text" name="subject" id="subject" value="<?= $subj['subject']; ?>">
       <input type="button" value="add option" onclick="addOption()"><br><br>
 
-      <label for="">Start:</label>
+      <label for="">Start Date:</label>
       <input type="date" name="start" value="<?= $subj['start']; ?>" id=""><br><br>
-      <label for="">End:</label>
+      <label for="">End Date:</label>
       <input type="date" name="end" value="<?= $subj['end']; ?>" id=""><br><br>
+      <label for="">Start Time:</label>
+      <input type="time" name="start_time" value="<?= $subj['starttime']; ?>" id=""><br><br>
+      <label for="">End Time:</label>
+      <input type="time" name="end_time" value="<?= $subj['endtime']; ?>" id=""><br><br>
 
       <label for="">Age lower limit:</label>
       <input type="number" name="age_limit" value="<?= $subj['age_limit']; ?>" id=""><br><br>
