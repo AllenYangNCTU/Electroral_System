@@ -150,6 +150,13 @@
       background-image: linear-gradient(45deg, #F0FF00 0%, #58CFFB 100%);
       /* background-image: none; */
     }
+
+    nav a {
+      display: block;
+      text-decoration: none;
+      font-size: 17px;
+      margin-left: -45rem;
+    }
   </style>
 </head>
 
