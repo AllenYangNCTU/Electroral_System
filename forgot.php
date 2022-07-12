@@ -17,21 +17,11 @@
   <div class="container">
     <form action="chk_acc.php" method="post">
       <h1>Forgot Passwords</h1>
-      <!-- <div class="txtb" style="margin-top:15vh ;"> -->
-      <!-- <input type="text" name="acc" id="acc">
-        <span data-placeholder="忘記密碼的帳號"></span> -->
       <label for="">Account:</label><br>
       <input type="text" name="acc"><br><br><br>
-      <!-- </div> -->
-      <!-- <div class="txtb" style="margin-top:15vh ;"> -->
-      <!-- <input type="text" name="email" id="email">
-        <span data-placeholder="請輸入註冊時的電子郵件"></span> -->
       <label for="">Email:</label><br>
       <input type="text" name="email"><br>
-      <!-- </div> -->
-      <!-- <div style="margin-top: 10vh;"> -->
       <input type="submit" class="logbtn" value="Verify Account">
-      <!-- </div> -->
     </form>
   </div>
   <?php include "./layout/footer.php"; ?>

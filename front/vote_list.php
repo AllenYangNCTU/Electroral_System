@@ -117,7 +117,7 @@
     </select>
   </div>
 
-  <!-- 投票列表 -->
+
   <div>
     <ul class="list">
       <li class="list-header">
