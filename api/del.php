@@ -9,4 +9,5 @@ if ($table == 'subjects') {
 } else {
   delete($table, $id);
 }
+
 header_to("../back.php");

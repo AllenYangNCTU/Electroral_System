@@ -3,7 +3,6 @@ include_once "base.php";
 
 $subject_id = $_POST['subject_id'];
 $new_subject = $_POST['subject'];
-
 $subject = find('subjects', $subject_id);
 $subject['subject'] = $new_subject;
 $subject['type_id'] = $_POST['types'];
@@ -32,6 +31,7 @@ foreach ($_POST['option'] as $key => $opt) {
     update_or_insert_contents_in_table("options", $add_option);
   }
 }
+
 $sql = "update subjects set age_limit_below = '{$_POST['age_limit_below']}', age_limit = '{$_POST['age_limit']}', start = '{$_POST['start']}', end = '{$_POST['end']}', starttime = '{$_POST['start_time']}', endtime = '{$_POST['end_time']}' where id = '{$_POST['subject_id']}'";
 $pdo->exec($sql);
 

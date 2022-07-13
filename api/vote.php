@@ -15,7 +15,6 @@ if (isset($_POST['opt'])) {
       }
       $sql = "select id from `users` where acc = '{$_SESSION['user']}'";
       $user_id = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
-      // dd($user_id);
       $log = [
         'user_id' => $user_id['id'],
         'subject_id' => $subject['id'],
@@ -41,4 +40,5 @@ if (isset($_POST['opt'])) {
     update_or_insert_contents_in_table("logs", $log);
   }
 }
+
 header_to("../index.php?do=vote_result&id={$option['subject_id']}");
