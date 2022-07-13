@@ -113,8 +113,6 @@ function show_table_contents($table, ...$arg)
                 $sql .= $arg[1];
             }
             break;
-
-            //執行連線資料庫查詢並回傳sql語句執行的結果
     }
 
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
