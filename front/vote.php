@@ -5,6 +5,7 @@ $opts = show_table_contents('options', ['subject_id' => $_GET['id']]);
 ?>
 <h1><?= $subject['subject']; ?></h1>
 <form action="./api/vote.php" method="post">
+
   <?php
   foreach ($opts as $opt) {
   ?>

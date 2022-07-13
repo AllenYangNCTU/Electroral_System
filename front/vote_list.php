@@ -53,7 +53,6 @@
     }
 
     div {
-      /* background-color: #696AAD; */
       color: #696AAD;
     }
 
@@ -106,6 +105,7 @@
 
       <option value="0">All</option>
       <?php
+
       $types = show_table_contents("types");
       foreach ($types as $type) {
         $selected = (isset($_GET['filter']) && $_GET['filter'] == $type['id']) ? 'selected' : '';
@@ -113,6 +113,7 @@
         echo $type['name'];
         echo "</option>";
       }
+
       ?>
     </select>
   </div>
@@ -194,6 +195,8 @@
       }
 
       foreach ($subjects as $subject) {
+
+
         $subject_container_style =  "subject_container";
         if (isset($_SESSION['user'])) {
           $voted = "select count(id) as num from `logs` where user_id=(select id from `users` where acc = '{$_SESSION["user"]}') and subject_id='{$subject["id"]}'";
@@ -201,19 +204,26 @@
           $subject_container_style = ($vote_history['num'] == 0) ? "subject_container" : "subject_container_voted";
         }
         echo "<a href='?do=vote_result&id={$subject['id']}'>";
+
+
         echo "<div class=$subject_container_style>";
         $sql_title = "select name from types where  `id`= '{$subject["type_id"]}'";
         $typename = $pdo->query($sql_title)->fetch(PDO::FETCH_ASSOC);
         echo "<div class='subject_li'>{$typename['name']}</div>";
+
         echo "<div class='subject_li_title'>{$subject['subject']}</div>";
+
         if ($subject['multiple'] == 0) {
           echo "<div  class='subject_li'>Multiple-Choice</div>";
         } else {
           echo "<div class='subject_li'>Multiple-Answers</div>";
         }
+
         echo "<div class='subject_li' style='font-size: 16px;'> ";
         echo $subject['start'] . " " . $subject['starttime'] . "~" . "<br>" . $subject['end'] . " " . $subject['starttime'];
         echo "</div>";
+
+
         echo "<div style='font-size:14px;' class='subject_li'>";
         $today = strtotime("now");
         $end = strtotime($subject['end'] . " " . $subject['endtime']);
@@ -229,8 +239,11 @@
           echo "<span style='color:grey;'>Cut-off voting</span>";
         }
         echo "</div>";
+
+
         echo "<div class='subject_li'>{$subject['total']}</div>";
         echo "</div>";
+
         echo "</a>";
       }
       ?>

@@ -1,7 +1,6 @@
 <?php
 include_once("../api/base.php");
 
-
 $pwd = $_POST['pwd'];
 
 $lower_arr = array();
@@ -24,6 +23,7 @@ $pwdstr = array();
 $hasLower = false;
 $hasUpper = false;
 $hasNum = false;
+
 for ($i = 0; $i < strlen($pwd); $i++) {
     $str = substr($pwd, $i, 1);
     if (in_array($str, $lower_arr)) {
@@ -39,8 +39,6 @@ for ($i = 0; $i < strlen($pwd); $i++) {
     }
 }
 
-
-
 if ($_POST['pwd'] == $_POST['re_pwd']) {
     if (strlen($pwd) > 8 && strlen($pwd) < 16) {
         if ($hasNum  && $hasUpper  && $hasLower) {
@@ -49,7 +47,7 @@ if ($_POST['pwd'] == $_POST['re_pwd']) {
                 SET    `pw`= '{$newpwd}'
                 WHERE  `acc`='{$_POST['username']}'";
             $pdo->exec($sql);
-            print("密碼重設成功");
+            print("Reset Passwords successfully!");
 ?>
             <br><a href="../login.php">Back to login</a>
         <?php
