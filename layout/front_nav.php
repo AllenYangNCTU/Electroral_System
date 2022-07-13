@@ -11,9 +11,7 @@
       display: block;
       width: 1260px;
       height: 300px;
-      /* background-color: greenyellow; */
       margin: 0;
-      /* margin-left: ; */
       margin-left: 8%;
       margin-top: 2vh;
       border-radius: 15px;
@@ -30,16 +28,6 @@
       font-size: 17px;
       margin-left: -45rem;
     }
-
-    /* nav {
-      height: 1rem;
-      display: flex;
-      justify-content: center;
-      justify-content: space-between;
-      width: 20rem;
-      margin-left: 5rem;
-      margin-top: 1rem;
-    } */
 
     body {
       background-image: linear-gradient(225deg, #FCFF00 0%, #FFA8A8 100%);
@@ -84,8 +72,6 @@
       <a href="register.php">Member Register</a>
     </nav>
     <div class="slideshow">
-      <!-- <p>123</p> -->
-      <!-- <p style="text-align:center;font-size:20px;">廣告牆</p> -->
       <img src="../img/header.png" alt="">
     </div>
   <?php
