@@ -9,11 +9,13 @@ $lower = 'abcdefghijklmnopqrstuvwxyz';
 for ($i = 0; $i < strlen($lower); $i++) {
     $lower_arr[] = substr($lower, $i, 1);
 }
+
 $upper_arr = array();
 $upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 for ($i = 0; $i < strlen($upper); $i++) {
     $upper_arr[] = substr($upper, $i, 1);
 }
+
 $num_arr = array();
 $num = '0123456789';
 for ($i = 0; $i < strlen($num); $i++) {
@@ -24,6 +26,7 @@ $pwdstr = array();
 $hasLower = false;
 $hasUpper = false;
 $hasNum = false;
+
 for ($i = 0; $i < strlen($pwd); $i++) {
     $str = substr($pwd, $i, 1);
     if (in_array($str, $lower_arr)) {
@@ -45,10 +48,12 @@ if ($acc['number'] == 0) {
         if (strlen($pwd) >= 8 && strlen($pwd) <= 16) {
             if ($hasNum  && $hasUpper  && $hasLower) {
                 if ($birthday < $today) {
+
                     $pw = md5($_POST['pw']);
                     $sql = "INSERT INTO `users` (`acc`,`pw`,`name`,`birthday`,`email`) 
                         values('{$_POST['acc']}','$pw','{$_POST['name']}','{$_POST['birthday']}','{$_POST['email']}');";
                     $pdo->exec($sql);
+
                     header_to("./login.php");
                 } else if ($birthday > $today) {
                     print("<script type='text/javascript'>alert('Birthday cannot be later than today');</script>");

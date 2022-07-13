@@ -148,7 +148,6 @@
 
     .container {
       background-image: linear-gradient(45deg, #F0FF00 0%, #58CFFB 100%);
-      /* background-image: none; */
     }
 
     nav a {

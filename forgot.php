@@ -16,11 +16,15 @@
   </nav>
   <div class="container">
     <form action="chk_acc.php" method="post">
+
       <h1>Forgot Passwords</h1>
+
       <label for="">Account:</label><br>
       <input type="text" name="acc"><br><br><br>
+
       <label for="">Email:</label><br>
       <input type="text" name="email"><br>
+
       <input type="submit" class="logbtn" value="Verify Account">
     </form>
   </div>

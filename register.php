@@ -44,19 +44,27 @@
   <div class="container">
 
     <form action="./add_member.php" method="post">
+
       <h1>Member Register</h1><br><br>
+
       <label for="">Account</label><br>
       <input type="text" name="acc"><br><br><br>
+
       <label for="">Passwrods(contain at least one uppercase character, lowercase character and number && 8 <= length <=16 )</label><br>
           <input type="password" name="pw"><br><br><br>
+
           <label for="">Confirm Passwrods(contain at least one uppercase character, lowercase character and number && 8 <= length <=16 )</label><br>
               <input type="password" name="re_pw"><br><br><br>
+
               <label for="">Name</label><br>
               <input type="text" name="name"><br><br><br>
+
               <label for="">Birthday</label><br>
               <input type="date" name="birthday"><br><br><br>
+
               <label for="">email</label><br>
               <input type="email" name="email"><br><br><br>
+
               <div>
                 <input type="submit" class="logbtn" value="Submit">
               </div>

@@ -12,11 +12,11 @@ if ($user_verification == $verification_string) {
     $_SESSION['user'] = $acc;
     header_to("./member_center.php");
   } else {
-    $error = "帳號密碼錯誤";
+    $error = "Account or Passwords error!";
     header_to("./login.php?error=$error");
   }
 } else if (!empty($user_verification) && $user_verification != $verification_string) {
-  $error = "驗證碼錯誤";
+  $error = "Verification error";
   header_to("./login.php?error=$error");
 } else {
   header_to("./login.php");

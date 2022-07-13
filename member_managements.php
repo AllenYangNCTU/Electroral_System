@@ -94,7 +94,7 @@
         <?php include "./layout/back_nav.php"; ?>
     </nav>
 
-    <h1>會員列表</h1>
+    <h1>Member Management Center</h1>
     <div>
         <ul>
             <li class="list-header">
