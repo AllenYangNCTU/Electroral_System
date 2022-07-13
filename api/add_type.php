@@ -6,16 +6,16 @@ if ($num['number'] == 0) {
     update_or_insert_contents_in_table('types', ['name' => $_POST['typename']]);
     print("Create type： " . $_POST['typename'] . " successfully！");
 ?>
-    <br><a href="../back.php">Back</a>
 <?php
+    header_to("../back.php?do=admin_type");
 } else if ($num['number'] > 0) {
     print("This type already exists in the database");
 ?>
-    <br><a href="../back.php">Back</a>
+    <br><a href="../back.php?do=admin_type">Back</a>
 <?php
 } else {
     print("error");
 ?>
-    <br><a href="../back.php">Back</a>
+    <br><a href=".../back.php?do=admin_type">Back</a>
 <?php
 }
