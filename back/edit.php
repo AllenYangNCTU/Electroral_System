@@ -61,6 +61,7 @@ $opts = all('options', ['subject_id' => $id]);
         <div>
           <label>Option:</label>
           <input class="vote-sub" type="text" name="option[<?= $opt['id']; ?>]" value="<?= $opt['option']; ?>">
+          <!-- <button onclick="location.href='./api/delete_option.php'">delete option</button> -->
         </div>
       <?php
       }
@@ -71,6 +72,17 @@ $opts = all('options', ['subject_id' => $id]);
     </div>
   </div>
 </form>
+<?php
+foreach ($opts as $opt) {
+?>
+  <div>
+    <label>Option:</label>
+    <input class="vote-sub" type="text" name="option[<?= $opt['id']; ?>]" value="<?= $opt['option']; ?>">
+    <button onclick="location.href='./api/delete_option.php?id=<?= $opt['id'] ?>&option=<?= $opt['option']; ?>&subject_id=<?= $opt['subject_id'] ?>&total=<?= $opt['total'] ?>'">delete option</button>
+  </div>
+<?php
+}
+?>
 
 <script>
   function addOption() {
