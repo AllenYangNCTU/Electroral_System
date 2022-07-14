@@ -90,6 +90,16 @@ $user = $pdo->query($sql)->fetch(PDO::FETCH_ASSOC); //導出資料
     }
     ?>
     <h2>Welcome~<?= $_SESSION['user']; ?>~</h2>
+    <?php
+    $sql_birthday = "select count(name) as num from users where (EXTRACT(MONTH FROM birthday) = EXTRACT(MONTH FROM CURRENT_DATE)) && (EXTRACT(DAY FROM birthday) = EXTRACT(DAY FROM CURRENT_DATE)) && name = '{$_SESSION['user']}'";
+    $birthday = $pdo->query($sql_birthday)->fetch(PDO::FETCH_ASSOC);
+    if ($birthday['num']) { ?>
+
+      <br>
+      <h2>Happy Birthday ~ <?= $_SESSION['user']; ?> ~ Today is your birthday.</h2>
+    <?php
+    }
+    ?>
     <div>
       <span>Account：</span>
       <?= $user['acc']; ?>

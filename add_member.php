@@ -81,12 +81,12 @@ if ($acc['number'] == 0) {
     } else {
         print("<script type='text/javascript'>alert('The password is inconsistent with the confirmation password you entered');</script>");
         ?>
-        <br><a href="register.php">Back to Register Pag</a>
+        <br><a href="register.php">Back to Register Page</a>
     <?php
     }
 } else {
     print("<script type='text/javascript'>alert('Account had been registered');</script>");
     ?>
-    <br><a href="register.php">Back to Register Pag</a>
+    <br><a href="register.php">Back to Register Page</a>
 <?php
 }
