@@ -1,12 +1,10 @@
 <?php
 include_once "./api/base.php";
 
-$pw = md5($_POST['pw']);
+// $pw = md5($_POST['pw']);
 $sql = "UPDATE `users`
-      SET    `pw`='$pw',
-             `name`='{$_POST['name']}',
+      SET    `name`='{$_POST['name']}',
              `birthday`='{$_POST['birthday']}',
-             `addr`='{$_POST['addr']}',
              `email`='{$_POST['email']}'
       WHERE  `id`='{$_POST['id']}'";
 $pdo->exec($sql);
